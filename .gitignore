@@ -1,3 +1,7 @@
 
 #Dependency directory
 node_modules/*
+
+#Ignore minified files
+public/stylesheets/*.min.css
+public/javascripts/*.min.js
