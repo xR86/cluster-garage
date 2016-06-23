@@ -34,7 +34,7 @@ module.exports = function(grunt){
 		    options: {
 		      spawn: false, //faster, but prone to errors
 		      debounceDelay: 250 //delay for automated tasks
-		    },
+		    }
 		  },
 		  stylesheets: {
 		    files: ['public/stylesheets/style.css'],
@@ -42,7 +42,7 @@ module.exports = function(grunt){
 		    options: {
 		      spawn: false, //faster, but prone to errors
 		      debounceDelay: 250 //delay for automated tasks
-		    },
+		    }
 		  },
 		  scripts: {
 		    files: ['public/javascripts/script.js'],
@@ -50,7 +50,11 @@ module.exports = function(grunt){
 		    options: {
 		      spawn: false, //faster, but prone to errors
 		      debounceDelay: 250 //delay for automated tasks
-		    },
+		    }
+		  },
+		  livereload: {
+		    options: { livereload: true },
+		    files: ['views/**/*', '/public/**/*']
 		  }
 		}
 	
