@@ -5,11 +5,118 @@
     <meta charset="UTF-8">
     <title><%= title %> - About</title>
     <% include templates/styletemplate.ejs %>
+
+    <style>
+    	.message-container{
+    		padding: 3rem;
+    		max-height: 30rem;
+    		overflow-y: auto;
+    	}
+
+    	.title{
+    	}
+    	.title span{
+    		text-decoration: none;
+    	}
+
+		.message-bubble{
+			padding: 3px;
+			border: 1px solid #e0e0e0;
+			background-color: #f3f3f3;
+			border-radius: 10px;
+			margin-bottom: 1rem;
+		}
+
+    </style>
  
 <body>
 
-	<h2><%= helloString %></h2>
+	<div class="row">
+		<h2><span class="col-xs-1">#</span>
+		<a href="#" class="col-xs-6"><%= helloString %></a>
+		<div class="col-xs-5"><hr></div>
+		</h2>
+	</div>
+
+	<div class="panel panel-default">
+		<div class="panel-body message-container" id="msgContainer">
+		</div>
+	</div>
+
+	<p>Add a new message to the message board: </p>
+	<div class="form-group">
+	  <label for="msg">Name:</label>
+	  <div class="row">
+		<div class="col-md-8 col-xs-8">
+			<input type="text" class="form-control" id="msg" onblur="keepFocus()" placeholder="Add New">
+		</div>
+		<div class="col-md-2">
+			<button type="button" class="btn btn-primary" onclick="appendMessage()">Send</button>
+		</div>
+		<div class="col-md-2">
+			<button type="button" class="btn btn-danger" onclick="deleteAllMessages()">Delete all</button>
+		</div>
+	  </div>
+	</div>
 
 	<% include templates/scripttemplate.ejs %>
+
+	<!-- Vanilla JS extras -->
+	<script>
+		window.onload = function() {
+		  keepFocus();
+		}
+
+		function keepFocus() {
+		  document.getElementById("msg").focus();
+		}
+
+		window.addEventListener("keypress", function(event){
+			if(event.keyCode === 13 && document.activeElement !== 'text') {
+		        //e.preventDefault();
+		        //alert('Prevent page from going back');
+		        appendMessage();
+
+		    }
+		});
+	</script>
+
+	<!-- Vanilla JS appends -->
+	<script>
+		function appendMessage(){
+			//get input value
+			var messageInput = document.getElementById('msg').value;
+			if(messageInput){
+				//create a wrapper node
+				var nodeDiv = document.createElement("div");
+				//create a content node
+				var node = document.createElement("h4");
+				//child of content ndoe
+				var textnode = document.createTextNode(messageInput);
+				node.appendChild(textnode);
+
+				//append content node to wrapper node
+				nodeDiv.appendChild(node);
+
+				nodeDiv.className += "message-bubble";
+
+				var container = document.getElementById("msgContainer");
+				container.appendChild(nodeDiv);
+
+				//reset the content of the input after posting
+				document.getElementById('msg').value = '';
+
+				container.scrollTop = container.scrollHeight;
+			}
+		}
+
+		function deleteAllMessages(){
+			var messageNodes = document.getElementById("msgContainer");
+			while (messageNodes.firstChild) {
+			    messageNodes.removeChild(messageNodes.firstChild);
+			}
+		}
+	</script>
+
 </body>
 </html>

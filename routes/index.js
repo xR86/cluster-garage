@@ -12,10 +12,10 @@ function find (collec, query, callback) {
     });
 }
 
-find('test', {"_id": { $eq: "5769621cb583fb11980b0213" }}, function (err, data) {
+/*find('test', {"_id": { $eq: "5769621cb583fb11980b0213" }}, function (err, data) {
     console.log(data);
     helloWorld = data;
-});
+});*/
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
