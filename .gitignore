@@ -1,7 +1,13 @@
 
-#Dependency directory
+#Dependency directory - backend
 node_modules/*
+
+#Dependency directory - frontend
+bower_components/*
 
 #Ignore minified files
 public/stylesheets/*.min.css
 public/javascripts/*.min.js
+
+#Ignore sass cache
+.sass-cache/*
