@@ -29,7 +29,7 @@
 
     </style>
  
-<body>
+<body ng-app="messageBoard" ng-controller="msgCtrl">
 
 	<div class="row">
 		<h2><span class="col-xs-1">#</span>
@@ -40,24 +40,36 @@
 
 	<div class="panel panel-default">
 		<div class="panel-body message-container" id="msgContainer">
+			<div class="message-bubble" ng-repeat="x in msgList">
+			    <input type="checkbox" ng-model="x.done"> <span ng-bind="x.msgText"></span>
+			</div>
 		</div>
 	</div>
 
 	<p>Add a new message to the message board: </p>
+	<form ng-submit="msgAdd()">
 	<div class="form-group">
 	  <label for="msg">Name:</label>
 	  <div class="row">
 		<div class="col-md-8 col-xs-8">
-			<input type="text" class="form-control" id="msg" onblur="keepFocus()" placeholder="Add New">
+			<input type="text" class="form-control" id="msg" onblur="keepFocus()" ng-model="msgInput" placeholder="Add New">
 		</div>
-		<div class="col-md-2">
+		<div class="col-md-4">
+			<!-- Send vanilla js-->
+			<!--
 			<button type="button" class="btn btn-primary" onclick="appendMessage()">Send</button>
-		</div>
-		<div class="col-md-2">
 			<button type="button" class="btn btn-danger" onclick="deleteAllMessages()">Delete all</button>
+			-->
+			<!-- Send ng -->
+			<input type="submit" class="btn btn-primary" value="Send">
 		</div>
 	  </div>
 	</div>
+	</form>
+
+	<!-- Remove ng -->
+	<p><button class="btn btn-warning" ng-click="msgRemove()">Remove marked</button></p>
+	<p><button class="btn btn-danger" ng-click="msgRemoveAll()">Remove all</button></p>
 
 	<% include templates/scripttemplate.ejs %>
 
@@ -71,17 +83,15 @@
 		  document.getElementById("msg").focus();
 		}
 
-		window.addEventListener("keypress", function(event){
+		/*window.addEventListener("keypress", function(event){
 			if(event.keyCode === 13 && document.activeElement !== 'text') {
 		        //e.preventDefault();
-		        //alert('Prevent page from going back');
 		        appendMessage();
-
 		    }
-		});
+		});*/
 	</script>
 
-	<!-- Vanilla JS appends -->
+	<!-- Vanilla JS appends --><!--
 	<script>
 		function appendMessage(){
 			//get input value
@@ -116,6 +126,47 @@
 			    messageNodes.removeChild(messageNodes.firstChild);
 			}
 		}
+	</script>-->
+
+
+	<!-- Angular style -->
+	<script>
+		var app = angular.module('messageBoard', []);
+		app.controller('msgCtrl', function($scope) {
+		    $scope.msgList = [{msgText:'Welcome to the message board !', done:false}];
+
+		    $scope.msgAdd = function() {
+		    	if($scope.msgInput){
+			        $scope.msgList.push({msgText:$scope.msgInput, done:false});
+			        $scope.msgInput = "";
+
+			        var container = document.getElementById("msgContainer");
+			        container.scrollTop = container.scrollHeight;
+		        }
+		    };
+
+		    $scope.msgRemove = function() {
+		        /*
+		        var oldList = $scope.msgList;
+		        $scope.msgList = [];
+		        angular.forEach(oldList, function(x) {
+		            if (!x.done) $scope.msgList.push(x);
+		        });
+		        */
+		        var count = 0;
+		        angular.forEach($scope.msgList, function(x) {
+		            if (x.done) {
+		            	$scope.msgList.splice(count, 1);
+		            }
+		            count++;
+		        });
+		    };
+
+		    $scope.msgRemoveAll = function() {
+		        var oldList = $scope.msgList;
+		        $scope.msgList = [];
+		    };
+		});
 	</script>
 
 </body>
