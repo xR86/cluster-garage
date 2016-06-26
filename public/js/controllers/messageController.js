@@ -12,7 +12,7 @@ angular.module('messageBoard').controller('messageCtrl', function($scope, $http)
 			container.scrollTop = container.scrollHeight;
 
 			//console.log(copy);
-			copy = JSON.stringify({ msgContent: copy }); 
+			copy = JSON.stringify({ content: copy });
 			//console.log(copy);
 
 			$http.post('/',copy).

@@ -2,15 +2,15 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 //Message model structure
-var msgSchema = new Schema({
-  msgContent: {
+var messageSchema = new Schema({
+  content: {
     type: String,
     required: true
   },
-  mstTimestamp: {
+  timestamp: {
   	type: Date, 
   	default: Date.now
   }
 });
 
-module.exports = mongoose.model('Message', msgSchema);
+module.exports = mongoose.model('Message', messageSchema);

@@ -19,6 +19,14 @@ SPA/dashboard for team management
 **Obs2**: The schema will be enforced through Mongoose models.
  
 **Obs3**: To make it more efficient (and/or more portable), the FK will be implemented through [MongoDB references](https://docs.mongodb.com/manual/reference/database-references/).
+
+<br />
+ 
+####Further ERD additions (to be added):
+* Teams - projects subdocument -> add updates subdocument (updates when needed for projects)
+* Users -> add lastLogin field (timestamp)
+* Books/Webinars -> add scope field (used for - general or certain project) - (obs: dashboard sections in regard to project)
+* Webinars -> add comment subdocuments
  
 ###User mock
 ```
@@ -28,6 +36,7 @@ SPA/dashboard for team management
 	"lastName": "Doe",
 	"email": "john.doe@johndoe.io",
 	"pass": "<hashed-pass>",
+	"team": "<ObjectId-1>",
 	"description": "Random guy",
 	"avatar": "<link-to-png>",
 	"role": "basic",
@@ -36,14 +45,13 @@ SPA/dashboard for team management
 			"badgeId": "<ObjectId-2>",
 			"badgeDate": "<date-1>" 
 		}
-	],
-	"team": "<ObjectId-1>"
+	]
 }
 ```
 ###Team mock
 ```
 {
-	"teamId": "<ObjectId-1>",
+	"_id": "<ObjectId-1>",
 	"name": "DoesTeam",
 	"users": [
 		{ "userId": "<ObjectId-00>" },
@@ -54,19 +62,19 @@ SPA/dashboard for team management
 	]
 }
 ```
-###Badges mock
+###Badge mock
 ```
 {
-	"badgeId": "<ObjectId-2>",
-	"badgeType": "technical",
-	"badgeName": "Most commits per week",
-	"badgeDescription": "The user has made the most commits in a given week."
+	"_id": "<ObjectId-2>",
+	"type": "technical",
+	"name": "Most commits per week",
+	"description": "The user has made the most commits in a given week."
 }
 ```	
 ###Category mock
 ```
 {
-	"categoryId": "<ObjectId-3>",
+	"_id": "<ObjectId-3>",
 	"name": "Angular",
 	"addedBy": "<ObjectId-00>"
 }
@@ -110,4 +118,3 @@ SPA/dashboard for team management
 	"dateEvent": "<date-4>"	
 }
 ```
-
