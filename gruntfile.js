@@ -29,7 +29,9 @@ module.exports = function(grunt){
 				},
 				files: {
 					'bootstrap/bootstrap.min.css': 'bootstrap/dist/css/bootstrap.min.css',
-					'angular/angular.min.js': 'angular/angular.min.js'
+					'angular/angular.min.js': 'angular/angular.min.js',
+					//'font-awesome/font-awesome.min.css': 'font-awesome/css/font-awesome.min.css'
+					'font-awesome/': 'font-awesome/'
 				}
 			}
 		},
@@ -52,7 +54,7 @@ module.exports = function(grunt){
 		  },
 		  livereload: {
 		    options: { livereload: true },
-		    files: ['views/**/*', '/public/**/*']
+		    files: ['views/**/*', '/public/**/*'] // global wildcard ? */* or **/*
 		  }
 		}
 	
