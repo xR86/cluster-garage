@@ -20,22 +20,10 @@ function find (collec, query, callback) {
 
 /* GET home page. */
 router.get('/', function(req, res) {
+
   res.render('index', { title: 'Cluster Garage', helloString: helloWorld });
 });
 
-router.post('/', function(req, res) {
-	var message = new Message(req.body);
 
-	console.log(req.body);
-	
-	message.save(function (err, message) {
-      if (err) {
-        console.log(err);
-        return res.send(err);
-      }
-        //return res.json({message: "Successfully added new message.", data: message});
-    });
-
-});	
 
 module.exports = router;

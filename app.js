@@ -8,6 +8,8 @@ var mongoose = require('mongoose');
 var dbConfig = require('./server/config/db');
 
 var routes = require('./routes/index');
+var messages = require('./routes/message')
+
 
 var app = express();
 
@@ -42,6 +44,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/', routes);
+app.use('/message', messages);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
