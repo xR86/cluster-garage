@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><%= title %></title>
+    <% include templates/styletemplate.ejs %>
+ 
+<body ng-app="messageBoard" ng-controller="messageCtrl">
+
+	<div class="row">
+		<h2><span class="col-xs-1">#</span>
+		<a href="#" class="col-xs-6"><%= helloString %></a>
+		<div class="col-xs-5"><hr></div>
+		</h2>
+	</div>
+
+	<div class="panel panel-default">
+		<div class="panel-body message-container" id="msgContainer">
+			<div class="message-bubble" ng-repeat="x in msgList">
+			    <input type="checkbox" ng-model="x.done"> <span ng-bind="x.msgText"></span>
+			</div>
+		</div>
+	</div>
+
+	<p>Add a new message to the message board: </p>
+	<form ng-submit="msgAdd()">
+	<div class="form-group">
+	  <label for="msg">Name:</label>
+	  <div class="row">
+		<div class="col-md-8 col-xs-8">
+			<input type="text" class="form-control" id="msg" onblur="keepFocus()" ng-model="msgInput" placeholder="Add New">
+		</div>
+		<div class="col-md-4">
+			<!-- Send vanilla js-->
+			<!--
+			<button type="button" class="btn btn-primary" onclick="appendMessage()">Send</button>
+			<button type="button" class="btn btn-danger" onclick="deleteAllMessages()">Delete all</button>
+			-->
+			<!-- Send ng -->
+			<input type="submit" class="btn btn-primary" value="Send">
+			<button class="btn btn-default" ng-click="msgRetrieve()"><i class="fa fa-refresh" aria-hidden="true"></i> Refresh</button>
+		</div>
+	  </div>
+	</div>
+	</form>
+
+	<!-- Remove ng -->
+	<p><button class="btn btn-warning" ng-click="msgRemove()">Remove marked</button></p>
+	<p><button class="btn btn-danger" ng-click="msgRemoveAll()">Remove all</button></p>
+
+	<% include templates/scripttemplate.ejs %>
+
+	<!-- Vanilla JS extras -->
+	<script>
+		window.onload = function() {
+		  keepFocus();
+		}
+
+		function keepFocus() {
+		  document.getElementById("msg").focus();
+		}
+
+		/*window.addEventListener("keypress", function(event){
+			if(event.keyCode === 13 && document.activeElement !== 'text') {
+		        //e.preventDefault();
+		        appendMessage();
+		    }
+		});*/
+	</script>
+
+	<!-- Vanilla JS appends --><!--
+	<script>
+		function appendMessage(){
+			//get input value
+			var messageInput = document.getElementById('msg').value;
+			if(messageInput){
+				//create a wrapper node
+				var nodeDiv = document.createElement("div");
+				//create a content node
+				var node = document.createElement("h4");
+				//child of content ndoe
+				var textnode = document.createTextNode(messageInput);
+				node.appendChild(textnode);
+
+				//append content node to wrapper node
+				nodeDiv.appendChild(node);
+
+				nodeDiv.className += "message-bubble";
+
+				var container = document.getElementById("msgContainer");
+				container.appendChild(nodeDiv);
+
+				//reset the content of the input after posting
+				document.getElementById('msg').value = '';
+
+				container.scrollTop = container.scrollHeight;
+			}
+		}
+
+		function deleteAllMessages(){
+			var messageNodes = document.getElementById("msgContainer");
+			while (messageNodes.firstChild) {
+			    messageNodes.removeChild(messageNodes.firstChild);
+			}
+		}
+	</script>-->
+
+
+	<!-- Angular style -->
+	<script src="public/js/controllers/messageController.js"></script>
+
+	<script src="//localhost:35729/livereload.js"></script>
+
+</body>
+</html>

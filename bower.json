@@ -1,0 +1,22 @@
+{
+  "name": "cluster-garage",
+  "version": "0.0.0",
+  "homepage": "https://github.com/xR86/cluster-garage",
+  "authors": [
+    "Dan Alexandru <dan.alexandru@info.uaic.ro>"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "angular": "~1.5.7",
+    "bootstrap": "~3.3.6",
+    "font-awesome": "fontawesome#~4.6.3"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "private": true
+}
