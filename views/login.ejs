@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><%= title %></title>
+    <% include templates/styletemplate.ejs %>
+
+    <style>
+    	.form-group .row{
+    		padding-top: 3rem;
+    	}
+
+    </style>
+ 
+<body ng-app="messageBoard" ng-controller="loginCtrl">
+
+	<div class="row">
+		<h2><span class="col-xs-1">#</span>
+		<a href="#" class="col-xs-6">Login</a>
+		<div class="col-xs-5"><hr></div>
+		</h2>
+	</div>
+
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<form ng-submit="login()">
+				<div class="form-group">
+				  <div class="row">
+				  	<label for="msg" class="col-md-1 col-xs-1">Email:</label>
+					<div class="col-md-8 col-xs-8">
+						<input type="text" class="form-control" id="msg" ng-model="emailInput" placeholder="Enter your email">
+					</div>
+				  </div>
+				  <div class="row">
+				  	<label for="msg" class="col-md-1 col-xs-1">Password:</label>
+					<div class="col-md-8 col-xs-8">
+						<input type="password" class="form-control" id="msg" ng-model="passInput" placeholder="Enter your password">
+					</div>
+				  </div>
+				  <input type="submit" class="btn btn-primary" value="Send">
+				</div>
+			</form>	
+		</div>
+	</div>
+
+	<div ng-show="loginOk" class="ng-hide"><a class="btn btn-info">Succesfully registered</a></div>
+
+	<p><a href="/register" class="btn btn-default">Don&#39;t have an account ?</a></p>
+	
+
+	<% include templates/scripttemplate.ejs %>
+
+	<!-- Vanilla JS extras -->
+	<script>
+		window.onload = function() {
+		  keepFocus();
+		}
+
+		function keepFocus() {
+		  document.getElementById("msg").focus();
+		}
+
+		/*window.addEventListener("keypress", function(event){
+			if(event.keyCode === 13 && document.activeElement !== 'text') {
+		        //e.preventDefault();
+		        appendMessage();
+		    }
+		});*/
+	</script>
+
+	<script src="public/js/controllers/loginController.js"></script>
+
+	<script src="//localhost:35729/livereload.js"></script>
+
+</body>
+</html>

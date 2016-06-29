@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var bcrypt = require('bcrypt-nodejs');
 var Schema = mongoose.Schema;
 
 var roleSchema = new Schema({
@@ -49,10 +50,21 @@ var userSchema = new Schema({
   	default: 'basic',
   },
   teamRoles: [roleSchema],
-  badges: [badgeReference],
+  badges: [userBadgeSchema],
   team: {
   	type: String
   }
 });
+
+userSchema.methods.hashPassword = function (pass) {
+  return bcrypt.hashSync(pass, bcrypt.genSaltSync(10), null);
+};
+
+userSchema.methods.checkPassword = function (pass) {
+  return bcrypt.compareSync(pass, this.pass);
+}
+userSchema.methods.randomPasswordHashed = function () {
+  return this.hashPassword(Math.random().toString(36).substr(2, 8));
+}
 
 module.exports = mongoose.model('User', userSchema);
