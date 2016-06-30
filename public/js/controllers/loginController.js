@@ -1,4 +1,4 @@
-angular.module('messageBoard').controller('loginCtrl', function($scope, $http) {
+app.controller('loginCtrl', function($scope, $http) {
 
 	$scope.login = function() {
 		var jsonData = JSON.stringify(

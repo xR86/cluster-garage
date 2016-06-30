@@ -18,7 +18,8 @@
 	<div class="panel panel-default">
 		<div class="panel-body message-container" id="msgContainer">
 			<div class="message-bubble" ng-repeat="x in msgList">
-			    <input type="checkbox" ng-model="x.done"> <span ng-bind="x.msgText"></span>
+				<input type="checkbox" ng-model="x.done"> <span ng-bind="x.msgText"></span>
+			    <!-- <message></message> -->
 			</div>
 		</div>
 	</div>
@@ -107,8 +108,21 @@
 	</script>-->
 
 
-	<!-- Angular style -->
+	<!-- Angular scripts -->
+
+	<!-- Modules -->
+	<script src="public/js/app.js"></script>
+
+	<!-- Controllers -->
 	<script src="public/js/controllers/messageController.js"></script>
+
+	<!-- Directives -->
+	<script src="public/js/directives/message.js"></script>
+
+	<!-- Services -->
+	<script src="public/js/services/messages.js"></script>
+
+
 
 	<script src="//localhost:35729/livereload.js"></script>
 

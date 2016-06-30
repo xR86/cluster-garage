@@ -1,4 +1,4 @@
-angular.module('messageBoard').controller('messageCtrl', function($scope, $http) {
+app.controller('messageCtrl', function($scope, $http) {
 	$scope.msgList = [{msgText:'Welcome to the message board !', done:false}];
 	$scope.msgMongoList = [];
 
@@ -80,7 +80,7 @@ angular.module('messageBoard').controller('messageCtrl', function($scope, $http)
 			if (x.done) {
 				$scope.msgList.splice(count, 1);
 
-				console.log(x._id);
+				//console.log(x._id);
 				if(x._id){
 					//var copy = JSON.stringify({ id: x._id });;
 

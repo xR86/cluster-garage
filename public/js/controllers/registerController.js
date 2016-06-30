@@ -1,4 +1,4 @@
-angular.module('messageBoard').controller('registerCtrl', function($scope, $http) {
+app.controller('registerCtrl', function($scope, $http) {
 	$scope.registerOk = false;
 
 	$scope.register = function() {
