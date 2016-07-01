@@ -40,8 +40,14 @@ process.on('SIGINT', function() {
 
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
+
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+//Configure passport
+require('./server/config/passport')(app);
+
 
 app.use('/', routes);
 app.use('/message', messages);

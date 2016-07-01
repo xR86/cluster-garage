@@ -1,4 +1,6 @@
 var express = require('express');
+var passport = require('passport');
+
 var router = express.Router();
 
 //var server = require('../app');
@@ -29,46 +31,46 @@ router.get('/', function(req, res) {
 
 //Login component
 
+//Handle login requests
+router.route('/login')
+  .post(passport.authenticate('local-login'),
+    function (req, res) {
+      console.log("aicisa");
+      res.send({
+        authenticated : req.isAuthenticated(),
+        user: req.user ? req.user : null
+      });
+  });
+
 router.get('/login', function(req, res) {
   res.render('login', { title: 'Cluster Garage - Login' });
 });
 
-router.post('/login', function(req, res) {
 
-  console.log(req.body);
-  console.log(req.email);
+//Handle logout
+  router.route('/logout')
+    .get(function (req, res) {
+      req.logout();
+      res.redirect('/');
+      res.end();
+    });
 
-  User.findOne({'email': req.email}, function (err, user) {
-        if (err) {
-          log.error(err);
-          return res.end(err);
-        }
-        if (!user) {
-          res.end("{message: 'User not found'}");
-        }
-        if (!user.checkPassword(req.password)) {
-          res.end("{message: 'Wrong password'}");
-        }
 
-        console.log('User %s %s has logged in.', user.firstName, user.lastName);
-
-        res.redirect('/');
-
-        res.end();
-      })
-
-  //res.end();
-
-}); 
-
-/*
-router.get('/logged', function (req, res) {
+  //Expose session ping mechanism
+  router.get('/logged', function (req, res) {
     res.json({
       authenticated : req.isAuthenticated(),
       user: req.user ? req.user : null
     });
-  });*/
+  });
 
+function isAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.status(401);
+  res.send({message: 'Not logged in.'})
+}
 
 
 //Register component
@@ -84,7 +86,7 @@ router.post('/register', function(req, res) {
 
   //console.log(newUser.pass);
 
-  newUser.pass = newUser.randomPasswordHashed();
+  newUser.pass = newUser.hashPassword(newUser.pass);
 
   //console.log(newUser.pass);
   
