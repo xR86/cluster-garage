@@ -5,7 +5,7 @@ var router = express.Router();
 
 //var server = require('../app');
 var mongoose = require('mongoose');
-var User = require('../server/model/userModel');
+var User = require('../model/userModel');
 
 var helloWorld = 'Welcome, MEAN stack !';
 

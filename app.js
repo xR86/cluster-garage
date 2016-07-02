@@ -7,14 +7,14 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var dbConfig = require('./server/config/db');
 
-var routes = require('./routes/index');
-var messages = require('./routes/message')
+var routes = require('./server/routes/index');
+var messages = require('./server/routes/message')
 
 
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'server/views'));
 app.set('view engine', 'ejs');
 
 app.use('/public', express.static(path.join(__dirname, '/public')));

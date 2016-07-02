@@ -45,7 +45,7 @@ module.exports = function(grunt){
 		    }
 		  },
 		  scripts: {
-		    files: ['public/js/script.js'], //'public/js/controllers/*.js'
+		    files: ['public/js/script.js'],
 		    tasks: ['uglify'],
 		    options: {
 		      spawn: false,
@@ -54,7 +54,7 @@ module.exports = function(grunt){
 		  },
 		  livereload: {
 		    options: { livereload: true },
-		    files: ['views/**/*', '/public/**/*'] // global wildcard ? */* or **/*
+		    files: ['app.js', 'server/**/*', 'public/**/*']
 		  }
 		}
 	
