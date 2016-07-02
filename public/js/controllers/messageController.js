@@ -1,30 +1,36 @@
-app.controller('messageCtrl', function($scope, $http) {
+app.controller('messageCtrl', /*['$scope', 'Messages',*/ function($scope,  $http/*, Messages*/) {
 	$scope.msgList = [{msgText:'Welcome to the message board !', done:false}];
 	$scope.msgMongoList = [];
+
+	//$scope.$Messages = Messages;
+
+	//$scope.serviceData = Messages.msgAdd();
 
 	//Create
 	$scope.msgAdd = function() {
 		if($scope.msgInput){
-			$scope.msgList.push({msgText:$scope.msgInput, done:false});
-			//console.log($scope.msgInput);
-			var copy = $scope.msgInput;
-			$scope.msgInput = "";
+				$scope.msgList.push({msgText:$scope.msgInput, done:false});
+				//console.log($scope.msgInput);
+				var copy = $scope.msgInput;
+				$scope.msgInput = "";
 
-			var container = document.getElementById("msgContainer");
-			container.scrollTop = container.scrollHeight;
+				var container = document.getElementById("msgContainer");
+				container.scrollTop = container.scrollHeight;
 
-			//console.log(copy);
-			copy = JSON.stringify({ content: copy });
-			//console.log(copy);
+				//console.log(copy);
+				copy = JSON.stringify({ content: copy });
+				//console.log(copy);
 
-			$http.post('/message', copy).
-				success(function(data) {
-					console.log("posted successfully");
-				}).error(function(data) {
-					console.error("error in posting");
-				});
+				$http.post('/message', copy).
+					success(function(data) {
+						console.log("posted successfully");
+					}).error(function(data) {
+						console.error("error in posting");
+					});
 		}
 	};
+	
+
 
 	//Read
 	$scope.msgRetrieve = function() {

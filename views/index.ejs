@@ -18,14 +18,14 @@
 	<div class="panel panel-default">
 		<div class="panel-body message-container" id="msgContainer">
 			<div class="message-bubble" ng-repeat="x in msgList">
-				<input type="checkbox" ng-model="x.done"> <span ng-bind="x.msgText"></span>
-			    <!-- <message></message> -->
+				<!-- <input type="checkbox" ng-model="x.done"> <span ng-bind="x.msgText"></span> -->
+			    <message></message>
 			</div>
 		</div>
 	</div>
 
 	<p>Add a new message to the message board: </p>
-	<form ng-submit="msgAdd()">
+	<form ng-submit="msgAdd()"> <!-- $Message.msgAdd() -->
 	<div class="form-group">
 	  <label for="msg">Name:</label>
 	  <div class="row">
@@ -120,7 +120,7 @@
 	<script src="public/js/directives/message.js"></script>
 
 	<!-- Services -->
-	<script src="public/js/services/messages.js"></script>
+	<!-- <script src="public/js/services/messages.js"></script> -->
 
 
 
