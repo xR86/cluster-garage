@@ -21,7 +21,7 @@ function find (collec, query, callback) {
 });*/
 
 /* GET home page. */
-router.get('/', function(req, res) {
+router.get('/', isAuthenticated, function(req, res) {
 
   //res.redirect('/login');
 
@@ -33,14 +33,18 @@ router.get('/', function(req, res) {
 
 //Handle login requests
 router.route('/login')
-  .post(passport.authenticate('local-login'),
+  .post(passport.authenticate('local-login', {
+      successRedirect: '/',
+      failureRedirect: '/login'
+    })/*,
     function (req, res) {
-      console.log("aicisa");
-      res.send({
-        authenticated : req.isAuthenticated(),
-        user: req.user ? req.user : null
-      });
-  });
+
+      // res.send({
+      //   authenticated : req.isAuthenticated(),
+      //   user: req.user ? req.user : null
+      // });
+  }*/
+  );
 
 router.get('/login', function(req, res) {
   res.render('login', { title: 'Cluster Garage - Login' });
@@ -51,7 +55,7 @@ router.get('/login', function(req, res) {
   router.route('/logout')
     .get(function (req, res) {
       req.logout();
-      res.redirect('/');
+      res.redirect('/login');
       res.end();
     });
 
@@ -68,8 +72,9 @@ function isAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
   }
-  res.status(401);
-  res.send({message: 'Not logged in.'})
+  //res.status(401);
+  res.redirect('/login');
+  //res.send({message: 'Not logged in.'})
 }
 
 

@@ -1,2 +1,2 @@
 
-var app = angular.module('messageBoard', []);
+var app = angular.module('clusterGarage', ['clusterGarage.dashboard']);

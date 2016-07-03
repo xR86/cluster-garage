@@ -13,7 +13,7 @@
 
     </style>
  
-<body ng-app="messageBoard" ng-controller="loginCtrl">
+<body ng-app="clusterGarage" ng-controller="loginCtrl">
 
 	<div class="row">
 		<h2><span class="col-xs-1">#</span>
@@ -24,18 +24,18 @@
 
 	<div class="panel panel-default">
 		<div class="panel-body">
-			<form ng-submit="login()">
+			<form ng-submit="login(user)">
 				<div class="form-group">
 				  <div class="row">
-				  	<label for="msg" class="col-md-1 col-xs-1">Email:</label>
+				  	<label for="email" class="col-md-1 col-xs-1">Email:</label>
 					<div class="col-md-8 col-xs-8">
-						<input type="text" class="form-control" id="msg" ng-model="emailInput" placeholder="Enter your email">
+						<input type="text" class="form-control" id="email" ng-model="user.email" placeholder="Enter your email">
 					</div>
 				  </div>
 				  <div class="row">
-				  	<label for="msg" class="col-md-1 col-xs-1">Password:</label>
+				  	<label for="pass" class="col-md-1 col-xs-1">Password:</label>
 					<div class="col-md-8 col-xs-8">
-						<input type="password" class="form-control" id="msg" ng-model="passInput" placeholder="Enter your password">
+						<input type="password" class="form-control" ng-model="user.pass" placeholder="Enter your password">
 					</div>
 				  </div>
 				  <input type="submit" class="btn btn-primary" value="Send">
@@ -58,24 +58,22 @@
 		}
 
 		function keepFocus() {
-		  document.getElementById("msg").focus();
+		  document.getElementById("email").focus();
 		}
 
-		/*window.addEventListener("keypress", function(event){
-			if(event.keyCode === 13 && document.activeElement !== 'text') {
-		        //e.preventDefault();
-		        appendMessage();
-		    }
-		});*/
 	</script>
 
 	<!-- Angular scripts -->
 
 	<!-- Modules -->
+	<script src="public/js/dashboard/dashboardModule.js"></script>
 	<script src="public/js/app.js"></script>
 
 	<!-- Controllers -->
 	<script src="public/js/login/loginController.js"></script>
+
+	<!-- Services -->
+	<script src="public/js/login/loginService.js"></script>
 
 
 	<script src="//localhost:35729/livereload.js"></script>

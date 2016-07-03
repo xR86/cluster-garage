@@ -1,0 +1,1 @@
+var dash = angular.module('clusterGarage.dashboard', []);

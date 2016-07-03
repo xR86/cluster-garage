@@ -10,7 +10,7 @@ router.get('/', function(req, res) {
 
   mongoose.connection.db.collection("messages", function (err, collection) {
     collection.find({}).toArray(function(err,docs){
-      console.log(docs);
+      //console.log(docs);
       return res.send( docs );
     });
   });
@@ -34,7 +34,7 @@ router.post('/', function(req, res) {
 
 router.delete('/:user_id', function(req, res) {
 
-  console.log(req.params.user_id); 
+  //console.log(req.params.user_id); 
   Message.remove({_id: req.params.user_id}, function (err) {
       if (err) {
         return res.send(err);
