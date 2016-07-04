@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title><%= title %></title>
+    <% include templates/styletemplate.ejs %>
+
+    <style>
+    	body{
+			padding:0px;
+			font-family: "Trebuchet MS", Helvetica, sans-serif;
+			overflow-x: hidden;
+		}
+
+		/**Navbar colors*/
+    	.navbar.navbar-pink{
+    		background-color: #e2007a;
+    		border: 1px solid #e2007a;
+    		border-radius: 0px;
+    		color: #FFF;
+    		margin-bottom: 0px;
+    	}
+
+    	.navbar-default .navbar-brand,
+    	.navbar-default.navbar-pink .navbar-nav>li>a{
+    		color: #FFF;
+    	}
+
+    	.nav.nav-pills,
+    	.navbar-default .navbar-toggle .icon-bar{
+    		background-color: #FFF;
+    	}
+
+    	.tab-content.tab-dashboard{
+    		background-color: #f9f6f1;
+    		position: relative;
+    		top: -0.3rem;
+    		padding: 1rem;
+    	}
+
+    	.nav-pills li{
+    		width: 10rem;
+    	}
+
+    	.nav-pills li.active{
+    		-webkit-box-shadow: 0px 3px 0px 0px rgba(0,71,143,1);
+			-moz-box-shadow: 0px 3px 0px 0px rgba(0,71,143,1);
+			box-shadow: 0px 3px 0px 0px rgba(0,71,143,1);
+    	}
+
+    	.nav-pills li>a{
+    		padding: 10px 30px;
+    		border-radius: 0px;
+    	}
+    	.dashboard-divider{
+    		margin: 3px auto;
+    	}
+
+    	/*Custom vertical and horizontal offsets*/
+    	.down3{
+    		margin-top: 3rem;
+    	}
+
+    	.offset-06{
+    		margin-left: 5%;
+    	}
+
+    	.vcenter {
+		    display: inline-block;
+		    vertical-align: middle;
+		    float: none;
+		}
+
+		/***/
+    	.tab-pane .row>div{
+    		padding: 0;
+    	}
+
+    	.panel.panel-default{
+    		border-radius: 0px;
+    	}
+
+    	.panel .panel-heading{
+    		padding: 5px 15px;
+    	}
+
+    	/**Material elements*/
+    	.card {
+		  border-radius: 2px;
+		  display: inline-block;
+		  background-color: #f0f0f0;
+		  border: 1px solid #faf8f5;
+		}
+
+		.card-elevation-1 {
+		  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+		  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+		}
+
+		.card-elevation-1:hover {
+		  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+		}
+
+		/**Pink stuff*/
+		.btn-pink{
+			background-color: #e2007a;
+			color: #FFF;
+		}
+		.icon-pink{
+			color: #e2007a;
+		}
+
+		/**Disable select on js-enabled elements*/
+		.unselect{
+			-webkit-user-select: none; /* Chrome/Safari */        
+			-moz-user-select: none; /* Firefox */
+			-ms-user-select: none; /* IE10+ */
+			user-select: none;
+		}
+
+		/**Webinar ribbon*/
+		.ribbon-wrapper {
+		  /*-webkit-box-shadow: 0px 0px 8px rgba(0,0,0,0.3);
+		  -moz-box-shadow:    0px 0px 8px rgba(0,0,0,0.3);
+		  box-shadow:         0px 0px 8px rgba(0,0,0,0.3);*/
+		  padding: 5px 24px;
+		  position: relative;
+		  z-index: 90;
+		}
+
+		.ribbon-wrapper-blue {
+		  width: 85px;
+		  height: 88px;
+		  overflow: hidden;
+		  position: absolute;
+		  top: -3px;
+		  right: -3px;
+		}
+
+		.ribbon-blue {
+		  font: bold 15px Sans-Serif;
+		  color: #333;
+		  text-align: center;
+		  
+		  -webkit-transform: rotate(45deg);
+		  -moz-transform:    rotate(45deg);
+		  -ms-transform:     rotate(45deg);
+		  -o-transform:      rotate(45deg);
+		  position: relative;
+		  padding: 7px 0;
+		  left: -5px;
+		  top: 15px;
+		  width: 120px;
+		  background-color: #004a91;
+		 
+		  color: #FFF;
+		  -webkit-box-shadow: 0px 0px 3px rgba(0,0,0,0.3);
+		  -moz-box-shadow:    0px 0px 3px rgba(0,0,0,0.3);
+		  box-shadow:         0px 0px 3px rgba(0,0,0,0.3);
+		}
+
+		.ribbon-blue:before, .ribbon-blue:after {
+		  content: "";
+		  border-top:   3px solid #0072e0;   
+		  border-left:  3px solid transparent;
+		  border-right: 3px solid transparent;
+		  position:absolute;
+		  bottom: -3px;
+		}
+
+		.ribbon-blue:before {
+		  left: 0;
+		}
+		.ribbon-blue:after {
+		  right: 0;
+		}​
+
+
+		/**Media queries*/
+    	 @media only screen and (max-width : 330px) {
+    	 	.col-xxs-8{
+    	 		width: 80%;
+    	 	}
+    	 	.navbar-header{
+    	 		height: 6rem;
+    	 	}
+    	 }
+    	 @media only screen and (max-width: 768px){
+    	 	nav.navbar-pink.navbar-default .open .dropdown-menu>li>a{
+	    		color: #FFF;
+	    	}
+    	 }
+
+    </style>
+ 
+<body>
+
+	<nav class="navbar navbar-default navbar-pink">
+	  <div class="container-fluid">
+	    <!-- Brand and toggle get grouped for better mobile display -->
+	    <div class="navbar-header row">
+	      <button type="button" class="navbar-toggle collapsed col-md-2 col-md-offset-1" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      
+	      <div class="col-md-12 col-xxs-8 col-md-offset-3">
+	      	<a class="navbar-brand" href="#">Welcome to Cluster Garage</a>
+	      </div>
+	      
+	    </div>
+
+	    <!-- Collect the nav links, forms, and other content for toggling -->
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      
+	      <ul class="nav navbar-nav navbar-right">
+	        <li class="dropdown">
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-cog" aria-hidden="true"></i> Test tester <span class="caret" style="opacity: 0.7"></span></a>
+	          <ul class="dropdown-menu">
+	            <li><a href="#">Settings</a></li>
+	            <li role="separator" class="divider"></li>
+	            <li><a href="#">Logout</a></li>
+	          </ul>
+	        </li>
+	      </ul>
+	    </div><!-- /.navbar-collapse -->
+	  </div><!-- /.container-fluid -->
+	</nav>
+
+
+	<div class="row">
+		<ul class="nav nav-pills col-md-offset-1">
+		  <li class="active">
+		  	<a data-toggle="pill" href="#dashboard">
+		  		<div class="row" style="margin-left: 30%;">
+		  			<i class="fa fa-tachometer" aria-hidden="true"></i>
+		  		</div>
+		  		<div class="row">
+		  		 Dashboard
+		  		</div>
+		  	</a>
+		  </li>
+		  <li>
+		  	<a data-toggle="pill" href="#menu1">
+		  		<div class="row" style="margin-left: 30%;">
+		  			<i class="fa fa-archive" aria-hidden="true"></i>
+		  		</div>
+		  		<div class="row" style="margin: 0">
+		  		 Other
+		  		</div>
+		  	</a>
+
+		  </li>
+		</ul>
+	</div>
+	<hr class="dashboard-divider">
+
+	<div class="tab-content tab-dashboard">
+	  <div id="menu1" class="tab-pane fade">
+	    <h3>Menu 1</h3>
+	    <p>Some content in menu 1.</p>
+	  </div>
+	  <div id="dashboard" class="tab-pane fade in active">
+	    <div class="row down3">
+			<div class="col-md-5 col-xs-5 col-md-offset-1">
+				<div class="panel panel-default">
+				  <div class="panel-heading">
+				  	 <h4 id="teamMembersTitle" class="unselect" style="display: inline">
+				  	 	<i class="fa fa-users" aria-hidden="true"></i> Team members
+				  	 </h4>
+				  	 <!-- <div class="text-right" style="display: inline-block"> -->
+					  	 <form class="navbar-form" role="search" style="display: inline;margin-left: 30%;">
+					        <div class="form-group">
+					          <input type="text" class="form-control" placeholder="Search for a user ...">
+					        </div>
+					        <!-- <button type="submit" class="btn btn-default">Submit</button> -->
+					      </form>
+					      <i class="fa fa-plus" aria-hidden="true"></i>
+					<!--  </div> -->
+				  </div>
+				  <div id="teamMembersPanel" class="panel-body">
+				  	<div class="card card-elevation-1 col-md-3">
+					  <img class="card-img-top img-responsive" src="https://github.com/identicons/xR86.png" alt="Card image cap">
+					  <div class="card-block">
+					    <h4 class="card-title">Dan Alexandru</h4>
+					    <p class="card-text">Fullstack</p>
+					  </div>
+					</div>
+
+				  </div>
+				</div>
+			</div>
+			<div class="col-md-5 col-xs-5 offset-06">
+				<div class="panel panel-default">
+				  <div class="panel-heading">
+					<h4 id="webinarsTitle" class="unselect" style="display: inline">
+				  	 	<i class="fa fa-magic" aria-hidden="true"></i> Webinars  
+				  	 	<i class="fa fa-list-alt" aria-hidden="true"></i>
+				  	 	<i class="fa fa-calendar" aria-hidden="true"></i>
+				  	 </h4>
+				  	 <form class="navbar-form" role="search" style="display: inline;margin-left: 30%;">
+				        <div class="form-group">
+				          <input type="text" class="form-control" placeholder="Search for a webinar ...">
+				        </div>
+				        <!-- <button type="submit" class="btn btn-default">Submit</button> -->
+				     </form>
+				     <i class="fa fa-plus" aria-hidden="true"></i>
+				  </div>
+				  <div id="webinarsPanel" class="panel-body">
+				  	<div class="well well-lg ribbon-wrapper">
+				  		<div class="row">
+				  			<div class="col-md-2 col-xs-2 vcenter">
+				  				<img class="img-responsive" src="http://www.eurocentive.com/static/images/angular.png" alt="webinar image">
+					  		</div>
+					  		<div class="col-md-4 offset-06 vcenter">
+					  			<h4>Angular UI Routing</h4>
+					  			<p>2016-05-09 12:12:00
+								<p><a href="#">Link</a></p>
+								<p>no members</p>
+					  		</div>
+					  		<div class="col-md-4 vcenter">
+					  			<p>added by: <a href="#">test@test.ro</a></p>
+					  		</div>
+					  		<div class="col-md-1 vcenter">
+					  			<button type="submit" class="btn btn-pink">Join</button>
+					  		</div>
+					       <div class="ribbon-wrapper-blue"><div class="ribbon-blue">NEXT</div></div>
+				  		</div>
+				  	</div>
+				  	<div class="well well-lg ribbon-wrapper">
+				  		<div class="row">
+				  			<div class="col-md-2 col-xs-2 vcenter">
+				  				<img class="img-responsive" src="https://cdn.tutsplus.com/net/uploads/2014/02/mongodb-retina-preview.png" alt="webinar image">
+					  		</div>
+					  		<div class="col-md-4 offset-06 vcenter">
+					  			<h4>Mongodb Models</h4>
+					  			<p>2016-06-21 12:00:00</p>
+								<p><a href="#">Link</a></p>
+								<p>no members</p>
+					  		</div>
+					  		<div class="col-md-4 vcenter">
+					  			<p>added by: <a href="#">test@test.ro</a></p>
+					  		</div>
+					  		<div class="col-md-1 vcenter">
+					  			<button type="submit" class="btn btn-pink">Join</button>
+					  		</div>
+				  		</div>
+				  	</div>
+				</div>
+			</div>
+		</div>
+	  </div> <!-- end row -->
+	  <div class="row">
+	  <div class="col-md-5 col-xs-5 col-md-offset-1">
+				<div class="panel panel-default">
+				  <div class="panel-heading">
+					<h4 id="libraryTitle" class="unselect" style="display: inline">
+				  	 	<i class="fa fa-book" aria-hidden="true"></i> Library 
+				  	 </h4>
+				  	 <form class="navbar-form" role="search" style="display: inline;margin-left: 40%;">
+				        <div class="form-group">
+				          <input type="text" class="form-control" placeholder="Search for a book ...">
+				        </div>
+				        <!-- <button type="submit" class="btn btn-default">Submit</button> -->
+				     </form>
+				     <i class="fa fa-plus" aria-hidden="true"></i>
+				  </div>
+				  <div id="libraryPanel" class="panel-body">
+				  	<div class="well well-lg">
+				  		<div class="row">
+				  			<div class="col-md-2 col-xs-2 vcenter">
+				  				<img class="img-responsive" src="http://www.eurocentive.com/static/images/angular.png" alt="webinar image">
+					  		</div>
+					  		<div class="col-md-4 offset-06 vcenter">
+					  			<h4>Angular for dummies</h4>
+					  		</div>
+					  		<div class="col-md-3 offset-06 vcenter">
+					  			<span>Type: link</span>
+					  		</div>
+					  		<div class="col-md-1 vcenter" style="font-size: 4rem">
+					  			<i class="fa fa-link icon-pink" aria-hidden="true"></i>
+					  		</div>
+				  		</div>
+				  	</div>
+				  	<div class="well well-lg">
+				  		<div class="row">
+				  			<div class="col-md-2 col-xs-2 vcenter">
+				  				<img class="img-responsive" src="https://cdn.tutsplus.com/net/uploads/2014/02/mongodb-retina-preview.png" alt="webinar image">
+					  		</div>
+					  		<div class="col-md-4 offset-06 vcenter">
+					  			<h4>Mongo for the SQL guy</h4>
+					  		</div>
+					  		<div class="col-md-3 offset-06	 vcenter">
+					  			<span>Type: file</span>
+					  		</div>
+					  		<div class="col-md-1 vcenter" style="font-size: 4rem">
+					  			<i class="fa fa-download icon-pink" aria-hidden="true"></i>
+					  		</div>
+				  		</div>
+				  	</div>
+				</div>
+			</div>
+		</div>
+	  </div>
+
+	  
+	</div>
+
+	
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+	<script>
+		$('#teamMembersTitle').click(function(){
+			$('#teamMembersPanel').toggle();
+		});
+		$('#webinarsTitle').click(function(){
+			$('#webinarsPanel').toggle();
+		});
+		$('#libraryTitle').click(function(){
+			$('#libraryPanel').toggle();
+		});
+	</script>
+
+	<% include templates/scripttemplate.ejs %>
+
+	<script src="//localhost:35729/livereload.js"></script>
+
+</body>
+</html>

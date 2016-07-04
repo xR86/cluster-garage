@@ -106,5 +106,9 @@ router.post('/register', function(req, res) {
 
 }); 
 
+router.get('/dashboard', function(req, res) {
+  res.render('dashboard', { title: 'Cluster Garage - Dashboard' });
+});
+
 
 module.exports = router;

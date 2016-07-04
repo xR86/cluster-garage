@@ -15,3 +15,7 @@ Documentation can be found [here](https://github.com/xR86/cluster-garage/tree/he
 3. `bower install` - installs all client-side dependencies
 4. Run `dev-script-win.bat` (on Windows; Linux bash script will be added in a future update)
 	* Alternative - open 2 terminals - run `grunt` and run `npm start` in separate terminals, and then open `http://127.0.0.1:8081` in the browser
+
+
+####Credits
+- used for ribbon - https://css-tricks.com/snippets/css/corner-ribbon/
