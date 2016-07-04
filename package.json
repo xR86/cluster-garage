@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./server/bin/www"
+    "start": "nodemon ./server/bin/www",
+    "test": "mocha -R spec ./test/server/loginTest.js",
+    "//": "./node_modules/.bin/mocha --reporter spec"
   },
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
@@ -26,6 +28,9 @@
     "grunt-contrib-sass": "^1.0.0",
     "grunt-contrib-uglify": "^1.0.1",
     "grunt-contrib-watch": "^1.0.0",
-    "nodemon": "^1.9.2"
+    "mocha": "^2.5.3",
+    "nodemon": "^1.9.2",
+    "should": "^9.0.2",
+    "supertest": "^1.2.0"
   }
 }
