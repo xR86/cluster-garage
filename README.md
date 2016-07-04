@@ -1,5 +1,7 @@
-# cluster-garage
+# cluster-garage [![Build Status](https://travis-ci.org/xR86/cluster-garage.svg?branch=master)](https://travis-ci.org/xR86/cluster-garage)
 SPA/dashboard for team management
+
+
 
 ##hello-world branch
 
@@ -17,5 +19,5 @@ Documentation can be found [here](https://github.com/xR86/cluster-garage/tree/he
 	* Alternative - open 2 terminals - run `grunt` and run `npm start` in separate terminals, and then open `http://127.0.0.1:8081` in the browser
 
 
-####Credits
+##Credits
 - used for ribbon - https://css-tricks.com/snippets/css/corner-ribbon/

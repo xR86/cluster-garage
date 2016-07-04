@@ -3,7 +3,10 @@ language: node_js
 node_js:
   - "5.1"
   - "4.1"
+services:
+  - mongodb
 before_script:
   - npm install -g mocha
 script:
+  - sleep 15
   - npm test
