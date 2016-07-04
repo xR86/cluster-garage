@@ -4,7 +4,7 @@ app.service('Register', ['$http', function($http) {
 
 		register : function(user) {
 
-			return $http.post('/register', user).
+			return $http.post('/users', user).
 			success(function(data) {
 				console.log("posted successfully");
 			}).error(function(data) {

@@ -8,7 +8,8 @@ var mongoose = require('mongoose');
 var dbConfig = require('./server/config/db');
 
 var routes = require('./server/routes/index');
-var messages = require('./server/routes/message')
+var messages = require('./server/routes/message');
+var users = require('./server/routes/users');
 
 
 var app = express();
@@ -51,6 +52,7 @@ require('./server/config/passport')(app);
 
 app.use('/', routes);
 app.use('/message', messages);
+app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -85,12 +87,3 @@ app.use(function(err, req, res, next) {
 
 
 module.exports = app;
-/*
-module.exports = {
-  app: app,
-  mongoose: mongoose
-};*/
-/*
-module.exports.app = app;
-module.exports.mongoose = mongoose;
-*/
