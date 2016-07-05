@@ -1,0 +1,91 @@
+# Example YAML to get you started quickly.
+# Be aware that YAML has indentation based scoping.
+# Code completion support is available so start typing for available options.
+swagger: '2.0'
+
+# This is your document metadata
+info:
+  version: "0.0.2"
+  title: Cluster Garage REST API
+
+# Describe your paths here
+paths:
+  # This is a path endpoint. Change it.
+  /users:
+    # This is a HTTP operation
+    get:
+      # Describe this verb here. Note: you can use markdown
+      description: |
+        Gets `User` objects from MongoDB.
+      # Query param of **task_id** determines
+      # the Task object returned
+      # This is array of GET operation parameters:
+      #parameters:
+        # An example parameter that is in query and is required
+       # -
+          #name: task_id
+          #in: query
+        #  description: The task id
+        #  required: false
+        #  type: number
+      # Expected responses for this operation:
+      responses:
+        # Response code
+        200:
+          description: Successful response
+          # A schema describing your response object.
+          # Use JSON Schema format
+          schema:
+            title: ArrayOfUsers
+            type: array
+            items:
+              title: UserArray
+              type: object
+              properties:
+                firstName:
+                  type: string
+                lastName:
+                  type: string
+                badges:
+                  type: object
+                teamRoles:
+                  type: object
+                role:
+                  type: string
+
+    # This is a HTTP operation
+    post:
+      consumes:
+        - application/json
+      # Describe this verb here. Note: you can use markdown
+      description: |
+        Saves a new `User` to MongoDB.
+      parameters:
+        - name: user
+          in: body
+          description: User data to save
+          required: true
+          schema:
+           $ref: '#/definitions/User'
+      # Expected responses for this operation:
+      responses:
+        # Response code
+        200:
+          description: Successful response
+definitions:
+  User:
+    required:
+      - firstName
+      - lastName
+      - email
+      - pass
+    properties:
+      firstName:
+        type: string
+      lastName:
+        type: string 
+      email:
+        type: string
+      pass:
+        type: string
+  
