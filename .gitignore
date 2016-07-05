@@ -12,3 +12,6 @@ public/js/*.min.js
 
 #Ignore sass cache
 .sass-cache/*
+
+#Ignore coverage report
+coverage/**/*

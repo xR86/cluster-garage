@@ -1,11 +1,12 @@
 {
   "name": "cluster-garage",
-  "version": "0.0.0",
+  "version": "0.0.2",
   "private": true,
   "scripts": {
     "start": "nodemon ./server/bin/www",
     "test": "mocha -R spec ./test/server/loginTest.js",
-    "//": "./node_modules/.bin/mocha --reporter spec"
+    "//": "istanbul cover node_modules/mocha/bin/_mocha -- -R spec",
+    "cov": "istanbul cover test/server/loginTest.js"
   },
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
@@ -28,9 +29,17 @@
     "grunt-contrib-sass": "^1.0.0",
     "grunt-contrib-uglify": "^1.0.1",
     "grunt-contrib-watch": "^1.0.0",
+    "grunt-coveralls": "^1.0.1",
     "mocha": "^2.5.3",
     "nodemon": "^1.9.2",
     "should": "^9.0.2",
     "supertest": "^1.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/xR86/cluster-garage.git"
+  },
+  "bugs": {
+    "url": "https://github.com/xR86/cluster-garage/issues"
   }
 }

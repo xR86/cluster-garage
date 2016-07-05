@@ -1,7 +1,11 @@
-# cluster-garage [![Build Status](https://travis-ci.org/xR86/cluster-garage.svg?branch=master)](https://travis-ci.org/xR86/cluster-garage)
+# cluster-garage [![Build Status](https://travis-ci.org/xR86/cluster-garage.svg?branch=master)](https://travis-ci.org/xR86/cluster-garage) [![Coverage Status](https://coveralls.io/repos/github/xR86/cluster-garage/badge.svg?branch=master)](https://coveralls.io/github/xR86/cluster-garage?branch=master)
 SPA/dashboard for team management
 
+Sprint board here: [https://zube.io/boards/61643778/sprintboard](https://zube.io/boards/61643778/sprintboard)
 
+Documentation can be found [here](https://github.com/xR86/cluster-garage/tree/hello-world/_documentation) (ERD, architecture, json mocks).
+
+Further documentation to be added.
 
 ##hello-world branch
 
@@ -9,7 +13,6 @@ Simple MEAN stack application.
 This example is meant to set up the cluster-garage project.
 
 
-Documentation can be found [here](https://github.com/xR86/cluster-garage/tree/hello-world/_documentation) (ERD, architecture, json mocks).
 
 ###Installation guide
 1. Change mongoDB dbPath to desired DB location (preferably, in a .cfg file)

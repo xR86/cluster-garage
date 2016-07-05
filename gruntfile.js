@@ -35,6 +35,23 @@ module.exports = function(grunt){
 				}
 			}
 		},
+
+
+		//code coverage
+		coveralls: {
+			// Options relevant to all targets
+			options: {
+				// When true, grunt-coveralls will only print a warning rather than
+				// an error, to prevent CI builds from failing unnecessarily (e.g. if
+				// coveralls.io is down). Optional, defaults to false.
+				force: false
+			},
+			code_coverage: {
+				src: 'coverage/lcov.info'
+			},
+		},
+
+
 		watch: {
 		  sass_stylesheets: {
 		    files: ['public/css/main.scss'],
@@ -69,4 +86,6 @@ module.exports = function(grunt){
 	grunt.loadNpmTasks('grunt-contrib-sass');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-bowercopy');
+
+	grunt.loadNpmTasks('grunt-coveralls');
 };
