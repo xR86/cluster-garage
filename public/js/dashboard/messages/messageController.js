@@ -28,10 +28,10 @@ dash.controller('messageCtrl', ['$scope', '$http', 'Messages', function($scope, 
 	$scope.msgRetrieve = function() {
 		$scope.msgList = [{content:'Welcome to the message board !', done:false}];
 
-		var data;
-		var promise = Messages.messageRetrieve();
+		$scope.loading = true;
 
-		promise.then(function(dat){
+		var data;
+		var promise = Messages.messageRetrieve().then(function(dat){
 			data = dat.data;
 			//console.log(dat.data);
 
@@ -45,6 +45,7 @@ dash.controller('messageCtrl', ['$scope', '$http', 'Messages', function($scope, 
 					var id, content, timestamp;
 					$scope.msgList.push(value);
 
+					$scope.loading = false;
 					//console.dir(value);
 				});
 			}

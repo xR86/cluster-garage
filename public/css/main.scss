@@ -7,8 +7,15 @@ a{
 	color:#00B7FF;
 }
 
+
+.message-widget{
+	min-height: 50rem;
+	max-height: 50rem;
+}
+
 .message-container{
 	padding: 3rem;
+	min-height: 30rem;
 	max-height: 30rem;
 	overflow-y: auto;
 }

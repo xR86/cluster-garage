@@ -30,7 +30,8 @@ module.exports = function(grunt){
 				files: {
 					'bootstrap/bootstrap.min.css': 'bootstrap/dist/css/bootstrap.min.css',
 					'angular/angular.min.js': 'angular/angular.min.js',
-					//'font-awesome/font-awesome.min.css': 'font-awesome/css/font-awesome.min.css'
+					'angular-ui-router/angular-ui-router.min.js': 'angular-ui-router/release/angular-ui-router.min.js',
+					'angular-bootstrap/ui-bootstrap.min.js': 'angular-bootstrap/ui-bootstrap.min.js',
 					'font-awesome/': 'font-awesome/'
 				}
 			}
