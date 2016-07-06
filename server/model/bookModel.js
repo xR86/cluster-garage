@@ -4,7 +4,8 @@ var Schema = mongoose.Schema;
 //Book model structure
 var bookSchema = new Schema({
   category: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Category',
     required: true
   },
   title: {
@@ -35,11 +36,13 @@ var bookSchema = new Schema({
     type: Number
   },
   addedBy: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
     required: true
   },
   team: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Team',
     required: true
   },
   dateAdded: {

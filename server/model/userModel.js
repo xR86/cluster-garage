@@ -12,8 +12,9 @@ var roleSchema = new Schema({
 
 var userBadgeSchema = new Schema({
 	badgeId: {
-		type: String,
-		required: true
+		type: mongoose.Schema.Types.ObjectId,
+    ref: 'Badge',
+    required: true
 	},
 	badgeDate: {
 		type: Date,
@@ -33,7 +34,9 @@ var userSchema = new Schema({
   },
   email: {
     type: String,
-    required: true
+    required: true,
+    unique: true,
+    match: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
   },
   pass: {
     type: String,
@@ -47,12 +50,13 @@ var userSchema = new Schema({
   },
   role: {
   	type: String,
-  	default: 'basic',
+  	default: 'basic'
   },
   teamRoles: [roleSchema],
   badges: [userBadgeSchema],
   team: {
-  	type: String
+  	type: mongoose.Schema.Types.ObjectId,
+    ref: 'Team'
   }
 });
 

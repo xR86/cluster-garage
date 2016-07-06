@@ -3,20 +3,22 @@ var Schema = mongoose.Schema;
 
 var webinarUserSchema = new Schema({
 	userId:{
-		type: String,
-		required: true
+		type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
 	},
 	RSVP: {
 		type: String,
 		enum: ['yes', 'maybe', 'no'],
-    	required: true
+    required: true
 	}
 });
 
 //Webinar model structure
 var webinarSchema = new Schema({
   category: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Category',
     required: true
   },
   title: {
@@ -32,11 +34,13 @@ var webinarSchema = new Schema({
     default: '-'
   },
   addedBy: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
     required: true
   },
   team: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Team',
     required: true
   },
   users: [webinarUserSchema],

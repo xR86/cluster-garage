@@ -4,8 +4,9 @@ var Schema = mongoose.Schema;
 //Team user model structure
 var teamUserSchema = new Schema({
 	userId: {
-		type: String,
-		required: true
+		type: mongoose.Schema.Types.ObjectId,
+      	ref: 'User',
+      	required: true
 	}
 });
 
