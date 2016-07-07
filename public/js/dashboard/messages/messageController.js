@@ -19,6 +19,9 @@ dash.controller('messageCtrl', ['$scope', '$http', 'Messages', function($scope, 
 				copy = JSON.stringify({ content: copy });
 
 				Messages.messageAdd(copy);
+
+				var container = document.getElementById("msgContainer");
+				container.scrollTop = container.scrollHeight;
 		}
 	};
 	
@@ -47,6 +50,8 @@ dash.controller('messageCtrl', ['$scope', '$http', 'Messages', function($scope, 
 
 					$scope.loading = false;
 					//console.dir(value);
+					var container = document.getElementById("msgContainer");
+					container.scrollTop = container.scrollHeight;
 				});
 			}
 		});
@@ -77,8 +82,6 @@ dash.controller('messageCtrl', ['$scope', '$http', 'Messages', function($scope, 
 			}
 			count++;
 		});
-		
-
 	};
 
 	$scope.msgRemoveAll = function() {

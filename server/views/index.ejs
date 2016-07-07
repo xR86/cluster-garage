@@ -3,46 +3,102 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><%= title %></title>
     <% include templates/styletemplate.ejs %>
 
     <style>
-		.spinner {
-			margin: 5rem auto;
-			border: 8px solid #f3f3f3; /* Light grey */
-			border-top: 8px solid #3498db; /* Blue */
-			border-radius: 50%;
-			width: 5rem;
-			height: 5rem;
-			animation: spin 2s linear infinite;
-		}
+		/*Refactoring styles*/
 
-		@keyframes spin {
-			0% { transform: rotate(0deg); }
-			100% { transform: rotate(360deg); }
-		}
+		/**Navbar colors*/
+    	.navbar.navbar-pink{
+    		background-color: #e2007a;
+    		border: 1px solid #e2007a;
+    		border-radius: 0px;
+    		color: #FFF;
+    		margin-bottom: 0px;
+    	}
 
-		.panel-nested {
-			width: 98%;
-			margin: 0 auto;
-		}
-		.fixed-alert{
-			position: fixed;
-			z-index: 2;
-			width: 20%;
-		}
+    	.navbar-default .navbar-brand,
+    	.navbar-default.navbar-pink .navbar-nav>li>a{
+    		color: #FFF;
+    	}
+
+    	.nav.nav-pills,
+    	.navbar-default .navbar-toggle .icon-bar{
+    		background-color: #FFF;
+    	}
+
+    	.tab-content.tab-dashboard{
+    		background-color: #f9f6f1;
+    		position: relative;
+    		top: -0.3rem;
+    		padding: 1rem;
+    	}
+
+    	.nav-pills li{
+    		width: 10rem;
+    	}
+
+    	.nav-pills li.active{
+    		-webkit-box-shadow: 0px 3px 0px 0px rgba(0,71,143,1);
+			-moz-box-shadow: 0px 3px 0px 0px rgba(0,71,143,1);
+			box-shadow: 0px 3px 0px 0px rgba(0,71,143,1);
+    	}
+
+    	.nav-pills li>a{
+    		padding: 10px 30px;
+    		border-radius: 0px;
+    	}
+    	.dashboard-divider{
+    		margin: 3px auto;
+    	}
+
+    	@media only screen and (max-width: 768px){
+    	 	nav.navbar-pink.navbar-default .open .dropdown-menu>li>a{
+	    		color: #FFF;
+	    	}
+    	 }
     </style>
  
 <body ng-app="clusterGarage" ng-controller="dashCtrl">
 
+	<nav class="navbar navbar-default navbar-pink">
+	  <div class="container-fluid">
+	    <!-- Brand and toggle get grouped for better mobile display -->
+	    <div class="navbar-header row">
+	      <button type="button" class="navbar-toggle collapsed col-md-2 col-md-offset-1" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      
+	      <div class="col-md-12 col-xxs-8 col-md-offset-3">
+	      	<a class="navbar-brand" href="#">Welcome to Cluster Garage</a>
+	      </div>
+	      
+	    </div>
+
+	    <!-- Collect the nav links, forms, and other content for toggling -->
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      
+	      <ul class="nav navbar-nav navbar-right">
+	        <li class="dropdown">
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-cog" aria-hidden="true"></i> {{ user.firstName + ' ' + user.lastName }} <span class="caret" style="opacity: 0.7"></span></a>
+	          <ul class="dropdown-menu">
+	            <li><a href="#" ng-controller="settingsCtrl" ng-click="openSettingsModal()">Settings</a></li>
+	            <li role="separator" class="divider"></li>
+	            <li><a href="logout">Logout</a></li>
+	          </ul>
+	        </li>
+	      </ul>
+	    </div><!-- /.navbar-collapse -->
+	  </div><!-- /.container-fluid -->
+	</nav>
+
+
 	<div class="alert alert-info fixed-alert ng-hide" role="alert" ng-show="isAFK">It appears you are idle.</div>
-
-	<div class="row">
-		<div class="col-md-1 col-md-offset-11">
-			<a href="logout" class="btn btn-default">Logout</a>
-		</div>
-	</div>
-
 
 	 <!-- href="#home" -->
 	<!-- <div class="container">
@@ -59,42 +115,45 @@
 	<p>&nbsp;</p>
 	
 
-	<div class="panel panel-default message-widget" ng-controller="messageCtrl">
-		<div class="panel-heading">
-			<a href="#"><span>Message Widget</span></a>
-		</div>
-		<div class="panel panel-default panel-nested">
-			<div class="panel-body message-container" id="msgContainer">
-				<div class="spinner" ng-show="loading"></div><!-- ng-show="loading" -->
-				<div class="message-bubble" ng-repeat="x in msgList">
-					<!-- <input type="checkbox" ng-model="x.done"> <span ng-bind="x.msgText"></span> -->
-				    <message></message>
+	<div class="row">
+		<div class="col-md-8 col-md-offset-1">
+			<div class="panel panel-default message-widget" ng-controller="messageCtrl">
+				<div class="panel-heading">
+					<a href="#"><span>Message Widget</span></a>
+				</div>
+				<div class="panel panel-default panel-nested">
+					<div class="panel-body message-container" id="msgContainer">
+						<div class="spinner" ng-show="loading"></div><!-- ng-show="loading" -->
+						<div class="message-bubble" ng-repeat="x in msgList">
+							<!-- <input type="checkbox" ng-model="x.done"> <span ng-bind="x.msgText"></span> -->
+						    <message></message>
+						</div>
+					</div>
+				</div>
+				<div class="panel-body">
+					<p>Add a new message to the message board: </p>
+					<form ng-submit="msgAdd()"> <!-- $Message.msgAdd() -->
+					<div class="form-group">
+					  <label for="msg">Name:</label>
+					  <div class="row">
+						<div class="col-md-6 col-xs-6">
+							<input type="text" class="form-control" id="msg" ng-model="msgInput" placeholder="Add New">
+						</div>
+						<div class="col-md-6 btn-group">
+							<!-- Send ng -->
+							<input type="submit" class="btn btn-primary" value="Send">
+							<button class="btn btn-default" ng-click="msgRetrieve()"><i class="fa fa-refresh" aria-hidden="true"></i> Refresh</button>
+							<!-- Remove ng -->
+							<button class="btn btn-warning" ng-click="msgRemove()">Remove marked</button>
+							<button class="btn btn-danger" ng-click="msgRemoveAll()">Remove all</button>
+						</div>
+					  </div>
+					</div>
+					</form>
 				</div>
 			</div>
-		</div>
-		<div class="panel-body">
-			<p>Add a new message to the message board: </p>
-			<form ng-submit="msgAdd()"> <!-- $Message.msgAdd() -->
-			<div class="form-group">
-			  <label for="msg">Name:</label>
-			  <div class="row">
-				<div class="col-md-8 col-xs-8">
-					<input type="text" class="form-control" id="msg" onblur="keepFocus()" ng-model="msgInput" placeholder="Add New">
-				</div>
-				<div class="col-md-4">
-					<!-- Send ng -->
-					<input type="submit" class="btn btn-primary" value="Send">
-					<button class="btn btn-default" ng-click="msgRetrieve()"><i class="fa fa-refresh" aria-hidden="true"></i> Refresh</button>
-					<!-- Remove ng -->
-					<button class="btn btn-warning" ng-click="msgRemove()">Remove marked</button>
-					<button class="btn btn-danger" ng-click="msgRemoveAll()">Remove all</button>
-				</div>
-			  </div>
-			</div>
-			</form>
 		</div>
 	</div>
-
 	
 
 	
@@ -120,6 +179,7 @@
 	<!-- Controllers -->
 	<script src="public/js/dashboard/dashboardController.js"></script>
 	<script src="public/js/dashboard/messages/messageController.js"></script>
+	<script src="public/js/dashboard/settings/settingsController.js"></script>
 
 	<!-- Directives -->
 	<script src="public/js/dashboard/messages/messageDirective.js"></script>
@@ -127,6 +187,10 @@
 	<!-- Services -->
 	<script src="public/js/dashboard/messages/messageService.js"></script>
 
+
+	<!-- Temporary dependencies - needed for dropdowns-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 
 	<script src="//localhost:35729/livereload.js"></script>

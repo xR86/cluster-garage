@@ -5,6 +5,7 @@ dash.config(function($stateProvider, $urlRouterProvider){
 	// For any unmatched url, send to /message
 	//$urlRouterProvider.otherwise("/message")
 
+	//TODO: should update partials according to widgets
 	$stateProvider
 		.state('message', {
 			url: "/message",

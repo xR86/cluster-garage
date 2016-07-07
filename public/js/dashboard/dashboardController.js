@@ -26,10 +26,26 @@ dash.controller('dashCtrl', ['$scope', '$http', '$window', 'Idle', function($sco
     	//$window.location.href('/logout');
 		//$location.path('/logout');
 		//$location.url('/logout');
+
+		//HACK: should be consistent with register and login redirects
 		$window.location.assign('/logout');
 
 		console.log('logged out');
 	};
+
+
+	//user data exposed to dashboard scope
+
+	$http.get('/logged').
+		success(function(data) {
+			console.log("get successfully");
+			//console.log(angular.fromJson(data));
+			$scope.user = data.user;
+			//console.log($scope.user);
+
+		}).error(function(data) {
+			console.error("error in get");
+		});
 	
 }]).config(function(IdleProvider, KeepaliveProvider) {
 	    // configure Idle settings
@@ -41,4 +57,3 @@ dash.controller('dashCtrl', ['$scope', '$http', '$window', 'Idle', function($sco
 	    // start watching when the app runs. also starts the Keepalive service by default.
 	    Idle.watch();
 	});
-

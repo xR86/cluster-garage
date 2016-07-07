@@ -31,8 +31,9 @@ module.exports = function(grunt){
 					'bootstrap/bootstrap.min.css': 'bootstrap/dist/css/bootstrap.min.css',
 					'angular/angular.min.js': 'angular/angular.min.js',
 					'angular-ui-router/angular-ui-router.min.js': 'angular-ui-router/release/angular-ui-router.min.js',
-					'angular-bootstrap/ui-bootstrap.min.js': 'angular-bootstrap/ui-bootstrap.min.js',
+					'angular-bootstrap/ui-bootstrap-tpls.min.js': 'angular-bootstrap/ui-bootstrap-tpls.min.js',
 					'ng-idle/angular-idle.min.js': 'ng-idle/angular-idle.min.js',
+					'angular-animate/angular-animate.min.js': 'angular-animate/angular-animate.min.js',
 					'font-awesome/': 'font-awesome/'
 				}
 			}
