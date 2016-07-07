@@ -1,0 +1,27 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<div class="row">
+		<h4 id="teamMembersTitle" class="col-md-6 unselect" style="display: inline">
+	  	 	<i class="fa fa-users" aria-hidden="true"></i> Team members
+	  	 </h4>
+	  	 <!-- <div class="text-right" style="display: inline-block"> -->
+	  	 <div class="col-md-5">
+		  	 <input type="text" class="form-control" placeholder="Search for a user ...">
+		 </div>
+		 <div class="col-md-1">
+		 	<span class="fa fa-plus" aria-hidden="true" style="margin-top: 1rem"></span>
+		 </div>
+		 </div>
+	</div>
+	<div class="panel-body">
+		<div class="panel-body">
+		  	<div class="card card-elevation-1 col-md-3" ng-repeat="x in teamMembers">
+			  <img class="card-img-top img-responsive" ng-src="{{ x.avatar }}" alt="Card image cap">
+			  <div class="card-block">
+			    <h4 class="card-title">{{ x.firstName + ' ' + x.lastName }}</h4>
+			    <p class="card-text">{{ x.roles[0].role }}</p>
+			  </div>
+			</div>
+		  </div>
+	</div>
+</div>

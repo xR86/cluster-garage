@@ -54,6 +54,23 @@
     		margin: 3px auto;
     	}
 
+    	/**Material elements*/
+    	.card {
+		  border-radius: 2px;
+		  display: inline-block;
+		  background-color: #f0f0f0;
+		  border: 1px solid #faf8f5;
+		}
+
+		.card-elevation-1 {
+		  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+		  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+		}
+
+		.card-elevation-1:hover {
+		  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+		}
+
     	@media only screen and (max-width: 768px){
     	 	nav.navbar-pink.navbar-default .open .dropdown-menu>li>a{
 	    		color: #FFF;
@@ -87,7 +104,7 @@
 	        <li class="dropdown">
 	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-cog" aria-hidden="true"></i> {{ user.firstName + ' ' + user.lastName }} <span class="caret" style="opacity: 0.7"></span></a>
 	          <ul class="dropdown-menu">
-	            <li><a href="#" ng-controller="settingsCtrl" ng-click="openSettingsModal()">Settings</a></li>
+	            <li><a href="#" ng-controller="settingsCtrl" ng-click="openSettingsModal('lg')">Settings</a></li>
 	            <li role="separator" class="divider"></li>
 	            <li><a href="logout">Logout</a></li>
 	          </ul>
@@ -114,7 +131,11 @@
 
 	<p>&nbsp;</p>
 	
-
+	<div class="row">
+		<div class="col-md-6 col-md-offset-1" ng-controller="teamCtrl">
+			<team></team>
+		</div>
+	</div>
 	<div class="row">
 		<div class="col-md-8 col-md-offset-1">
 			<div class="panel panel-default message-widget" ng-controller="messageCtrl">
@@ -179,9 +200,11 @@
 	<!-- Controllers -->
 	<script src="public/js/dashboard/dashboardController.js"></script>
 	<script src="public/js/dashboard/messages/messageController.js"></script>
+	<script src="public/js/dashboard/team/teamController.js"></script>
 	<script src="public/js/dashboard/settings/settingsController.js"></script>
 
 	<!-- Directives -->
+	<script src="public/js/dashboard/team/teamDirective.js"></script>
 	<script src="public/js/dashboard/messages/messageDirective.js"></script>
 
 	<!-- Services -->
