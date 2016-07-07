@@ -32,6 +32,7 @@ module.exports = function(grunt){
 					'angular/angular.min.js': 'angular/angular.min.js',
 					'angular-ui-router/angular-ui-router.min.js': 'angular-ui-router/release/angular-ui-router.min.js',
 					'angular-bootstrap/ui-bootstrap.min.js': 'angular-bootstrap/ui-bootstrap.min.js',
+					'ng-idle/angular-idle.min.js': 'ng-idle/angular-idle.min.js',
 					'font-awesome/': 'font-awesome/'
 				}
 			}

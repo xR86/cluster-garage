@@ -26,9 +26,16 @@
 			width: 98%;
 			margin: 0 auto;
 		}
+		.fixed-alert{
+			position: fixed;
+			z-index: 2;
+			width: 20%;
+		}
     </style>
  
-<body ng-app="clusterGarage" ng-controller="messageCtrl">
+<body ng-app="clusterGarage" ng-controller="dashCtrl">
+
+	<div class="alert alert-info fixed-alert ng-hide" role="alert" ng-show="isAFK">It appears you are idle.</div>
 
 	<div class="row">
 		<div class="col-md-1 col-md-offset-11">
@@ -52,7 +59,7 @@
 	<p>&nbsp;</p>
 	
 
-	<div class="panel panel-default message-widget">
+	<div class="panel panel-default message-widget" ng-controller="messageCtrl">
 		<div class="panel-heading">
 			<a href="#"><span>Message Widget</span></a>
 		</div>
@@ -111,6 +118,7 @@
 	<% include templates/ngmodules.ejs %>
 
 	<!-- Controllers -->
+	<script src="public/js/dashboard/dashboardController.js"></script>
 	<script src="public/js/dashboard/messages/messageController.js"></script>
 
 	<!-- Directives -->

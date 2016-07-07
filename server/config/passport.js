@@ -3,13 +3,17 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local');//.Strategy ?
 var User = require('../model/userModel');
 
+var hour = 3600000; //1000ms * 60sec * 60min = 1 hour
+//var halfMinute = 30000; //1000ms * 30sec = 30 sec
+//var expireTime = 600000; //1000 * 60 * 10 = 10 minutes
 
 module.exports = function (app) {
   //Setup passport
   app.use(session({
     secret: 'some secret string to protect the session',
     resave: false,
-    saveUninitialized: true
+    saveUninitialized: true,
+    cookie: { maxAge: hour }
   }));
   app.use(passport.initialize());
   app.use(passport.session());

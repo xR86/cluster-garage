@@ -1,4 +1,4 @@
-var dash = angular.module('clusterGarage.dashboard', ['ui.router', 'ui.bootstrap']);
+var dash = angular.module('clusterGarage.dashboard', ['ui.router', 'ngIdle', 'ui.bootstrap']);
 
 dash.config(function($stateProvider, $urlRouterProvider){
 
