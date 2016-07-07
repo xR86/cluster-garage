@@ -5,4 +5,4 @@ var connectionString = 'mongodb://' + dbHost + ':' + dbPort + '/' + dbName;
 
 module.exports = {
   url: connectionString
-}
+};

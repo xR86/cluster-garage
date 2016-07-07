@@ -25,7 +25,7 @@ module.exports = function (app) {
   passport.deserializeUser(function (id, done) {
     User.findById(id/*, {pass: 0}*/, function (err, user) {
       done(err, user);
-    })
+    });
   });
 
   //Set up the Local authentication strategy
@@ -35,7 +35,7 @@ module.exports = function (app) {
       passReqToCallback: true
     },
     function (req, email, password, done) {
-    	console.log(email, password)
+    	console.log(email, password);
 
       //Find the user by email
       User.findOne({'email': email}, function (err, user) {
@@ -51,7 +51,7 @@ module.exports = function (app) {
         }
         console.log('User %s %s has logged in.', user.firstName, user.lastName);
         return done(null, user);
-      })
+      });
     }
   ));
 

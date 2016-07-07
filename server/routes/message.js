@@ -9,7 +9,16 @@ router.get('/', function(req, res) {
   var message = new Message();
 
   mongoose.connection.db.collection("messages", function (err, collection) {
+    if(err){
+      console.log(err);
+      return res.send(err);
+    }
+
     collection.find({}).toArray(function(err,docs){
+      if(err){
+        console.log(err);
+        return res.send(err);
+      }
       //console.log(docs);
       return res.send( docs );
     });

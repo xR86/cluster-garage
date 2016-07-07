@@ -15,6 +15,6 @@ dash.config(function($stateProvider, $urlRouterProvider){
 		.state('other', {
 			url: "/other",
 			templateUrl: "public/js/dashboard/other.html"
-		})
+		});
 
 });

@@ -51,7 +51,7 @@ dash.controller('messageCtrl', ['$scope', '$http', 'Messages', function($scope, 
 			}
 		});
 
-	}
+	};
 	$scope.msgRetrieve(); //should run on window.onload
 
 	//Update

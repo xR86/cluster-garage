@@ -1,0 +1,8 @@
+{
+	"critics": {
+		"lint": {"engine": "jshint"}
+	},
+	"test": [
+		"**/test/**"
+	]
+}

@@ -21,6 +21,10 @@ describe('User', function () {
       newUser.save(function(err){
         //console.log(newUser.firstName);
         //console.log(newUser.pass);
+        if(err){
+          console.log(err);
+          return res.send(err);
+        }
 
         return done();
       });
@@ -37,13 +41,13 @@ describe('User', function () {
         .type('json')
         .send(data)
         .expect('Location','/')
-        .end(done)
-      })
+        .end(done);
+      });
 
     after(function(done) {
           User.find({ 'email': 'gigi@gigi.ro' }).remove().exec();
           return done();
       });
 
-  })
-})
+  });
+});

@@ -18,6 +18,11 @@ router.get('/', function(req, res) {
       res.json(users);
     });*/
   mongoose.connection.db.collection("users", function (err, collection) {
+    if (err) {
+        console.log(err);
+        return res.send(err);
+    }
+    
     collection.find({}, {_id:0, email: 0, pass: 0, __v: 0}).toArray(function(err,docs){
       if (err) {
         console.log(err);

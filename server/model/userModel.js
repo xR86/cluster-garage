@@ -66,9 +66,9 @@ userSchema.methods.hashPassword = function (pass) {
 
 userSchema.methods.checkPassword = function (pass) {
   return bcrypt.compareSync(pass, this.pass);
-}
+};
 userSchema.methods.randomPasswordHashed = function () {
   return this.hashPassword(Math.random().toString(36).substr(2, 8));
-}
+};
 
 module.exports = mongoose.model('User', userSchema);
