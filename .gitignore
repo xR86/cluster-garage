@@ -15,3 +15,6 @@ public/js/*.min.js
 
 #Ignore coverage report
 coverage/**/*
+
+#Ignore coverage config file
+.coveralls.yml
