@@ -6,9 +6,12 @@ node_js:
 services:
   - mongodb
 before_script:
-  - npm install
-  # npm install -g mocha
+  - npm install -g mocha #for npm test
+  - npm install istanbul #for run-script cov
+  - npm install grunt #for grunt coveralls
+  - npm install grunt-coveralls #for grunt coveralls 
 script:
   - sleep 15
   - npm test
+  - npm run-script cov
   - grunt coveralls

@@ -30,6 +30,7 @@
     "grunt-contrib-uglify": "^1.0.1",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-coveralls": "^1.0.1",
+    "istanbul": "^0.4.4",
     "mocha": "^2.5.3",
     "nodemon": "^1.9.2",
     "should": "^9.0.2",
