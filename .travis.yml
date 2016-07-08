@@ -13,5 +13,5 @@ before_script:
 script:
   - sleep 15
   - npm test
-  - npm run-script cov
-  - grunt coveralls
+  - npm run-script cov || true #it may fail after generating the lcov - ignore
+  - grunt coveralls || true #it may fail in some cases - ignore
