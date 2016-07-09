@@ -11,6 +11,14 @@ Documentation can be found [here](https://github.com/xR86/cluster-garage/tree/he
 
 Further documentation to be added.
 
+##master branch
+The application would include the following features:
+- users widget (team administration)
+- webinar widget (event organization)
+- book widget (book/materials)
+- settings modal
+
+
 ##hello-world branch
 
 Simple MEAN stack application.
