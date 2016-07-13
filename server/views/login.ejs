@@ -15,39 +15,43 @@
  
 <body ng-app="clusterGarage" ng-controller="loginCtrl">
 
-	<div class="row">
-		<h2><span class="col-xs-1">#</span>
-		<a href="#" class="col-xs-6">Login</a>
-		<div class="col-xs-5"><hr></div>
-		</h2>
-	</div>
+	
 
-	<div class="panel panel-default">
-		<div class="panel-body">
-			<form ng-submit="login(user)">
-				<div class="form-group">
-				  <div class="row">
-				  	<label for="email" class="col-md-1 col-xs-1">Email:</label>
-					<div class="col-md-8 col-xs-8">
-						<input type="text" class="form-control" id="email" ng-model="user.email" placeholder="Enter your email">
-					</div>
-				  </div>
-				  <div class="row">
-				  	<label for="pass" class="col-md-1 col-xs-1">Password:</label>
-					<div class="col-md-8 col-xs-8">
-						<input type="password" class="form-control" ng-model="user.pass" placeholder="Enter your password">
-					</div>
-				  </div>
-				  <input type="submit" class="btn btn-primary" value="Send">
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<div class="row">
+				<h2><span class="col-xs-1">#</span>
+				<a href="#" class="col-xs-6">Login</a>
+				<div class="col-xs-5"><hr></div>
+				</h2>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<form ng-submit="login(user)">
+						<div class="form-group">
+						  <div class="row">
+						  	<label for="email" class="col-md-1 col-xs-1">Email:</label>
+							<div class="col-md-8 col-xs-8">
+								<input type="text" class="form-control" id="email" ng-model="user.email" placeholder="Enter your email">
+							</div>
+						  </div>
+						  <div class="row">
+						  	<label for="pass" class="col-md-1 col-xs-1">Password:</label>
+							<div class="col-md-8 col-xs-8">
+								<input type="password" class="form-control" ng-model="user.pass" placeholder="Enter your password">
+							</div>
+						  </div>
+						  <input type="submit" class="btn btn-primary" value="Send">
+						</div>
+					</form>	
 				</div>
-			</form>	
+			</div>
+
+			<div ng-show="loginOk" class="ng-hide"><a class="btn btn-info">Succesfully registered</a></div>
+
+			<p><a href="/register" class="btn btn-default">Don&#39;t have an account ?</a></p>
 		</div>
 	</div>
-
-	<div ng-show="loginOk" class="ng-hide"><a class="btn btn-info">Succesfully registered</a></div>
-
-	<p><a href="/register" class="btn btn-default">Don&#39;t have an account ?</a></p>
-	
 
 	<% include templates/scripttemplate.ejs %>
 

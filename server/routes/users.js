@@ -55,4 +55,30 @@ router.post('/', function(req, res) {
 }); 
 
 
+//user settings
+router.put('/:id/name', function(req,res){
+  console.log("body: ", req.body);
+  console.log("\toid is: ", req.params.id);
+
+  User.findOne({_id: req.params.id}, function (err, user) {
+      if (err) {
+        return res.send(err);
+      }
+      console.dir(user.firstName);
+      user.firstName = req.body.firstName;
+      user.lastName = req.body.lastName;
+
+      //save the user
+      user.save(function (err) {
+        if (err) {
+          return res.send(err);
+        }
+        res.json({message: 'User ' + user.email + ' successfuly updated'});
+        res.end();
+      });
+  });
+
+});
+
+
 module.exports = router;

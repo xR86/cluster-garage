@@ -35,13 +35,13 @@ dash.controller('dashCtrl', ['$scope', '$http', '$window', 'Idle', function($sco
 
 
 	//user data exposed to dashboard scope
-
+	//TODO: move this call to a service (to be used in other controllers also)
 	$http.get('/logged').
 		success(function(data) {
 			console.log("get successfully");
 			//console.log(angular.fromJson(data));
 			$scope.user = data.user;
-			//console.log($scope.user);
+			console.dir($scope.user);
 
 		}).error(function(data) {
 			console.error("error in get");

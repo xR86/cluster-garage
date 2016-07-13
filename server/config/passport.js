@@ -39,8 +39,8 @@ module.exports = function (app) {
 
       //Find the user by email
       User.findOne({'email': email}, function (err, user) {
-        if (err) {
-          console.log(err);
+       if (err) {
+          console.log('mongoose:', err);
           return done(err);
         }
         if (!user) {

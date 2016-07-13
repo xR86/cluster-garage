@@ -5,7 +5,8 @@ app.controller('loginCtrl', ['$scope', '$window', '$http', 'Login', function($sc
 		//console.dir(user);
 
 		var promise = Login.login(user);
-		promise.then(function(result){
+		promise.success(function(result){
+			console.log(result);
 			$scope.loginOk = true;
 
 			$window.location.href = '/';

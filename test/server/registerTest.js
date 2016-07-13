@@ -8,29 +8,29 @@ var request  = require("supertest");
 var agent = request.agent(app);
 
 describe('User', function () {
-  this.timeout(15000);
+  //this.timeout(15000);
 
   before(function(done) {
-        data = JSON.stringify({ 
+    });
+  describe('Login test', function () {
+    data = JSON.stringify({ 
           email    : "gigi@gigi.ro",
           firstName: "Gigi",
           lastName : "Popescu",
           pass : "parola"
         });
-        
-        it('should redirect to /login', function (done) {
+    it('should redirect to /login', function (done) {
           agent
           .post('/users')
           .type('json')
           .send(data)
           //.expect('Location','/login')
-          .end(done)/*.then(function(){
+          .end(done).then(function(){
             return done();
-          })*/;
+          });
         });
-    });
-  describe('Login test', function () {
-      data = JSON.stringify({ 
+
+      dataLogin = JSON.stringify({ 
         'email': 'gigi@gigi.ro', 
         'pass': 'parola' 
       });
@@ -39,7 +39,7 @@ describe('User', function () {
         agent
         .post('/login')
         .type('json')
-        .send(data)
+        .send(dataLogin)
         .expect('Location','/')
         .end(done).then(function(){
           return done();
