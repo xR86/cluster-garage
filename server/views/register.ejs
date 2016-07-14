@@ -16,49 +16,52 @@
 <body ng-app="clusterGarage" ng-controller="registerCtrl">
 
 	<div class="row">
-		<h2><span class="col-xs-1">#</span>
-		<a href="#" class="col-xs-6">Register</a>
-		<div class="col-xs-5"><hr></div>
-		</h2>
-	</div>
-
-	<div class="panel panel-default">
-		<div class="panel-body">
-			<form ng-submit="register(user)">
-				<div class="form-group">
-				  <div class="row">
-				  	<label for="msg" class="col-md-1 col-xs-1">First Name:</label>
-					<div class="col-md-8 col-xs-8">
-						<input type="text" class="form-control" id="firstName" ng-model="user.firstName" placeholder="Enter your first name">
-					</div>
-				  </div>
-				  <div class="row">
-				  	<label for="msg" class="col-md-1 col-xs-1">Last Name:</label>
-					<div class="col-md-8 col-xs-8">
-						<input type="text" class="form-control" ng-model="user.lastName" placeholder="Enter your last name">
-					</div>
-				  </div>
-				  <div class="row">
-				  	<label for="msg" class="col-md-1 col-xs-1">Email:</label>
-					<div class="col-md-8 col-xs-8">
-						<input type="text" class="form-control" ng-model="user.email" placeholder="Enter your email">
-					</div>
-				  </div>
-				  <div class="row">
-				  	<label for="msg" class="col-md-1 col-xs-1">Password:</label>
-					<div class="col-md-8 col-xs-8">
-						<input type="password" class="form-control" ng-model="user.pass" placeholder="Enter your password">
-					</div>
-				  </div>
-				  <input type="submit" class="btn btn-primary" value="Send">
+		<div class="col-md-8 col-md-offset-2">
+			<div class="row">
+				<h2><span class="col-xs-1">#</span>
+				<a href="#" class="col-xs-6">Register</a>
+				<div class="col-xs-5"><hr></div>
+				</h2>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<form ng-submit="register(user)">
+						<div class="form-group">
+						  <div class="row">
+						  	<label for="msg" class="col-md-2 col-xs-1">First Name:</label>
+							<div class="col-md-8 col-xs-8">
+								<input type="text" class="form-control" id="firstName" ng-model="user.firstName" placeholder="Enter your first name">
+							</div>
+						  </div>
+						  <div class="row">
+						  	<label for="msg" class="col-md-2 col-xs-1">Last Name:</label>
+							<div class="col-md-8 col-xs-8">
+								<input type="text" class="form-control" ng-model="user.lastName" placeholder="Enter your last name">
+							</div>
+						  </div>
+						  <div class="row">
+						  	<label for="msg" class="col-md-2 col-xs-1">Email:</label>
+							<div class="col-md-8 col-xs-8">
+								<input type="text" class="form-control" ng-model="user.email" placeholder="Enter your email">
+							</div>
+						  </div>
+						  <div class="row">
+						  	<label for="msg" class="col-md-2 col-xs-1">Password:</label>
+							<div class="col-md-8 col-xs-8">
+								<input type="password" class="form-control" ng-model="user.pass" placeholder="Enter your password">
+							</div>
+						  </div>
+						  <input type="submit" class="btn btn-primary" value="Send">
+						</div>
+					</form>	
 				</div>
-			</form>	
+			</div>
+
+			<div ng-show="registerOk" class="ng-hide"><a class="btn btn-info">Succesfully registered</a></div>
+	
+			<p><a href="/login" class="btn btn-default">Already have an account ?</a></p>
 		</div>
 	</div>
-
-	<div ng-show="registerOk" class="ng-hide"><a class="btn btn-info">Succesfully registered</a></div>
-	
-	<p><a href="/login" class="btn btn-default">Already have an account ?</a></p>
 
 	<% include templates/scripttemplate.ejs %>
 

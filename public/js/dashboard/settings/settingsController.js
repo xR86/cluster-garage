@@ -2,6 +2,7 @@ dash.controller('settingsCtrl', function ($scope, $uibModal, $log, Settings) {
 
 	$scope.items = ['item1', 'item2', 'item3'];
 	$scope.animationsEnabled = true;
+	$scope.user = '';
 
 	$scope.openSettingsModal = function (size) {
 
@@ -30,14 +31,30 @@ dash.controller('settingsCtrl', function ($scope, $uibModal, $log, Settings) {
 
 	//wrapper function for update
 	$scope.updName = function(user){
-		//HACK: must use a service instead of parent
-		console.log(1, $scope.$parent);
-		console.log(2, $scope.$parent.$parent.$$childHead.user);
-		$scope.oid = $scope.$parent.$parent.$$childHead.user._id;
-		console.dir($scope.oid);
-		console.dir(user);
+		if(user.firstName || user.lastName){
+			//HACK: must use a service instead of parent
+			console.log('parent scope object: ', $scope.$parent.$parent.$$childHead.user);
+			$scope.oid = $scope.$parent.$parent.$$childHead.user._id;
+			console.dir(user);
 
-		Settings.updateName($scope.oid, user);
+			Settings.updateName($scope.oid, user).then(function(){
+				$scope.user.firstName = '';
+				$scope.user.lastName = '';
+			});
+		}
+	}
+
+	$scope.updDescription = function(user){
+		if(user.description){
+			//HACK: must use a service instead of parent
+			console.log('parent scope object: ', $scope.$parent.$parent.$$childHead.user);
+			$scope.oid = $scope.$parent.$parent.$$childHead.user._id;
+			console.dir(user);
+
+			Settings.updateDescription($scope.oid, user).then(function(){
+				$scope.user.description = '';
+			});
+		}
 	}
 
 });

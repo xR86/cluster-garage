@@ -49,9 +49,32 @@ router.get('/logout', isAuthenticated, function (req, res) {
 
 //Expose session ping mechanism
 router.get('/logged', function (req, res) {
+  //Version 1
+  //HACK: it takes an object and modifies it, then it is parsed, then it is stringified again
+  /*var user = JSON.stringify(req.user, function(key, value){ //replacer callback
+    if (key === "pass") {
+      return undefined;
+    }
+    return value;
+  });
+  console.log(user);
+  user = JSON.parse(user);*/
+
+  //Version 2
+  var user;
+  if(req.user){
+    user = JSON.stringify(req.user); //needs to be stringified before parsing
+    user = JSON.parse(user, function(key, value) { //reviver callback
+      if (key === "pass") {
+        return undefined;
+      }
+      return value;
+    });
+  }
+
   res.json({
     authenticated : req.isAuthenticated(),
-    user: req.user ? req.user : null
+    user: req.user ? user : null
   });
 });
 
