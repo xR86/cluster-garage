@@ -17,6 +17,14 @@ dash.service('Settings', ['$http', function($http) {
 			}).error(function(data) {
 				console.error("error in put");
 			});
+		},
+		deleteAccount : function(oid){
+			return $http.delete('/users/' + oid).
+			success(function(data) {
+				console.log("delete successfully");
+			}).error(function(data) {
+				console.error("error in delete");
+			});
 		}
 
 	};

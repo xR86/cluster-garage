@@ -55,6 +55,19 @@ router.post('/', function(req, res) {
 }); 
 
 
+//user delete
+router.delete('/:id', function(req,res){
+  console.log("oid is: ", req.params.id);
+
+  User.remove({_id: req.params.user_id}, function (err) {
+      if (err) {
+        return res.send(err);
+      }
+      res.json({message: 'Successfully removed user.'});
+  });
+
+});
+
 //user settings
 router.put('/:id/name', function(req,res){
   console.log("body: ", req.body);

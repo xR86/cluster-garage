@@ -1,4 +1,4 @@
-dash.controller('settingsCtrl', function ($scope, $uibModal, $log, Settings) {
+dash.controller('settingsCtrl', function ($scope, $uibModal, $log, $window, Settings) {
 
 	$scope.items = ['item1', 'item2', 'item3'];
 	$scope.animationsEnabled = true;
@@ -29,7 +29,7 @@ dash.controller('settingsCtrl', function ($scope, $uibModal, $log, Settings) {
 		$scope.animationsEnabled = !$scope.animationsEnabled;
 	};
 
-	//wrapper function for update
+	//wrapper function for update of names
 	$scope.updName = function(user){
 		if(user.firstName || user.lastName){
 			//HACK: must use a service instead of parent
@@ -42,8 +42,9 @@ dash.controller('settingsCtrl', function ($scope, $uibModal, $log, Settings) {
 				$scope.user.lastName = '';
 			});
 		}
-	}
+	};
 
+	//wrapper function for update of description
 	$scope.updDescription = function(user){
 		if(user.description){
 			//HACK: must use a service instead of parent
@@ -55,7 +56,21 @@ dash.controller('settingsCtrl', function ($scope, $uibModal, $log, Settings) {
 				$scope.user.description = '';
 			});
 		}
-	}
+	};
+
+	$scope.delAccount = function(){
+		if (confirm('Are you sure you want to delete your account?')) {
+			//HACK: must use a service instead of parent
+			console.log('parent scope object: ', $scope.$parent.$parent.$$childHead.user);
+			$scope.oid = $scope.$parent.$parent.$$childHead.user._id;
+		    Settings.deleteAccount($scope.oid).then(function(){
+		    	$window.location.href = '/';
+		    });
+		} else {
+		    // Do nothing!
+		    console.log("So ... no delete");
+		}
+	};
 
 });
 
