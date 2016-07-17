@@ -18,7 +18,6 @@ module.exports = function(grunt){
 			dist: {
 				files : {
 					'public/js/script.min.js': 'public/js/script.js'
-					//'public/js/controllers/messageController.min.js': 'public/js/controllers/messageController.js',
 				}
 			}
 		},

@@ -37,6 +37,26 @@ a{
 	width: 20%;
 }
 
+/*********Team widget*****
+*****************************/
+.row-users{
+	padding: 1rem;
+	overflow-x: auto;
+	white-space: nowrap;
+	margin-bottom: -15px;
+}
+
+.card-user{
+	height: 100%;
+	max-height: 20rem;
+	width: 100%;
+	max-width: 20rem;
+	margin-left: 10px;
+}
+
+.card-user:last-child{
+	margin-right: 20px;
+}
 
 /*********Message widget*****
 *****************************/

@@ -7,11 +7,13 @@ bower_components/*
 public/vendor/**/*
 
 #Ignore minified files
+public/css/*.css.map
 public/css/*.min.css
 public/js/*.min.js
 
-#Ignore sass cache
+#Ignore sass cache & export
 .sass-cache/*
+public/css/*.css
 
 #Ignore coverage report
 coverage/**/*

@@ -1,15 +1,10 @@
-dash.controller('teamCtrl', ['$scope', '$http', function($scope,  $http) {
+dash.controller('teamCtrl', ['$scope', '$http', 'Team', function($scope,  $http, Team) {
 
-	$scope.teamMembers = [
-		{
-			firstName: 'Dan',
-			lastName: 'Alexandru',
-			avatar: 'https://github.com/identicons/xR86.png',
-			roles: [{
-				role: 'Fullstack'
-			}]
-		}
-	];
+	var getUsersCall = Team.getUsers();
+	getUsersCall.then(function(response){
+		console.log(response);
+		$scope.teamMembers = response.data;
+	});
 	
 }]);
 

@@ -14,8 +14,8 @@
 		 </div>
 	</div>
 	<div class="panel-body">
-		<div class="panel-body">
-		  	<div class="card card-elevation-1 col-md-3" ng-repeat="x in teamMembers">
+		<div class="row row-users">
+			<div class="card card-elevation-1 card-user" ng-repeat="x in teamMembers">
 			  <img class="card-img-top img-responsive" ng-src="{{ x.avatar }}" alt="Card image cap">
 			  <div class="card-block">
 			    <h4 class="card-title">{{ x.firstName + ' ' + x.lastName }}</h4>

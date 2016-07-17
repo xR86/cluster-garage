@@ -1,8 +1,16 @@
-dash.controller('settingsCtrl', function ($scope, $uibModal, $log, $window, Settings) {
+dash.controller('settingsCtrl', ['$scope', '$uibModal', '$log', '$window', 'Settings', 'UserData',
+function ($scope, $uibModal, $log, $window, Settings, UserData) {
 
 	$scope.items = ['item1', 'item2', 'item3'];
 	$scope.animationsEnabled = true;
 	$scope.user = '';
+
+	//user data exposed to dashboard scope
+	var userCall = UserData.getUserData();
+	userCall.then(function(response){
+		$scope.user = response.data.user;
+		console.log($scope.user);
+	});
 
 	$scope.openSettingsModal = function (size) {
 
@@ -32,9 +40,7 @@ dash.controller('settingsCtrl', function ($scope, $uibModal, $log, $window, Sett
 	//wrapper function for update of names
 	$scope.updName = function(user){
 		if(user.firstName || user.lastName){
-			//HACK: must use a service instead of parent
-			console.log('parent scope object: ', $scope.$parent.$parent.$$childHead.user);
-			$scope.oid = $scope.$parent.$parent.$$childHead.user._id;
+			$scope.oid = $scope.user._id;
 			console.dir(user);
 
 			Settings.updateName($scope.oid, user).then(function(){
@@ -47,9 +53,7 @@ dash.controller('settingsCtrl', function ($scope, $uibModal, $log, $window, Sett
 	//wrapper function for update of description
 	$scope.updDescription = function(user){
 		if(user.description){
-			//HACK: must use a service instead of parent
-			console.log('parent scope object: ', $scope.$parent.$parent.$$childHead.user);
-			$scope.oid = $scope.$parent.$parent.$$childHead.user._id;
+			$scope.oid = $scope.user._id;
 			console.dir(user);
 
 			Settings.updateDescription($scope.oid, user).then(function(){
@@ -60,9 +64,8 @@ dash.controller('settingsCtrl', function ($scope, $uibModal, $log, $window, Sett
 
 	$scope.delAccount = function(){
 		if (confirm('Are you sure you want to delete your account?')) {
-			//HACK: must use a service instead of parent
-			console.log('parent scope object: ', $scope.$parent.$parent.$$childHead.user);
-			$scope.oid = $scope.$parent.$parent.$$childHead.user._id;
+			$scope.oid = $scope.user._id;
+
 		    Settings.deleteAccount($scope.oid).then(function(){
 		    	$window.location.href = '/';
 		    });
@@ -72,7 +75,7 @@ dash.controller('settingsCtrl', function ($scope, $uibModal, $log, $window, Sett
 		}
 	};
 
-});
+}]);
 
 
 // Please note that $uibModalInstance represents a modal window (instance) dependency.

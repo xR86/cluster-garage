@@ -43,10 +43,12 @@ var userSchema = new Schema({
     required: true
   },
   description: {
-    type: String
+    type: String,
+    default: null
   },
   avatar: {
-    type: String
+    type: String,
+    default: 'http://placehold.it/350x250'
   },
   role: {
   	type: String,

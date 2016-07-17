@@ -1,11 +1,11 @@
-dash.service('Team', ['$http', function($http) {
+app.service('UserData', ['$http', function($http) {
 
 	var serviceObject = {
-		getUsers : function() {
-			return $http.get('/users').
+		getUserData : function() {
+			return $http.get('/logged').
 				success(function(data) {
 					console.log("get successfully");
-					console.log(data);
+					//console.log(data);
 				}).error(function(data) {
 					console.error("error in get");
 				});

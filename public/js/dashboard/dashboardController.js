@@ -1,4 +1,13 @@
-dash.controller('dashCtrl', ['$scope', '$http', '$window', 'Idle', function($scope,  $http, $window, Idle) {
+dash.controller('dashCtrl', ['$scope', '$http', '$window', 'Idle', 'UserData', 
+function($scope,  $http, $window, Idle, UserData) {
+
+	//user data exposed to dashboard scope
+	var userCall = UserData.getUserData();
+	userCall.then(function(response){
+		$scope.user = response.data.user;
+		console.log($scope.user);
+	});
+
 
 	$scope.$on('IdleStart', function() {
         // the user appears to have gone idle
@@ -33,20 +42,6 @@ dash.controller('dashCtrl', ['$scope', '$http', '$window', 'Idle', function($sco
 		console.log('logged out');
 	};
 
-
-	//user data exposed to dashboard scope
-	//TODO: move this call to a service (to be used in other controllers also)
-	$http.get('/logged').
-		success(function(data) {
-			console.log("get successfully");
-			//console.log(angular.fromJson(data));
-			$scope.user = data.user;
-			console.dir($scope.user);
-
-		}).error(function(data) {
-			console.error("error in get");
-		});
-	
 }]).config(function(IdleProvider, KeepaliveProvider) {
 	    // configure Idle settings
 	    IdleProvider.idle(5); // in seconds
