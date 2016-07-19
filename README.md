@@ -7,7 +7,7 @@ SPA/dashboard for team management
 
 Sprint board here: [https://zube.io/boards/61643778/sprintboard](https://zube.io/boards/61643778/sprintboard)
 
-Documentation can be found [here](https://github.com/xR86/cluster-garage/tree/hello-world/_documentation) (ERD, architecture, json mocks).
+Documentation can be found [here](https://github.com/xR86/cluster-garage/tree/master/_documentation) (ERD, architecture, json mocks).
 
 Further documentation to be added.
 
