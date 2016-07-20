@@ -4,4 +4,13 @@ dash.directive('team', function() {
     replace: true,
     templateUrl: 'public/js/dashboard/team/teamPartial.html' 
   }; 
+})
+.filter('search', function () {
+
+    return function (users, searchString) {
+
+        console.log('filter');
+
+    };
+
 });

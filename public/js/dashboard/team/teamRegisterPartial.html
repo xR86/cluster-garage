@@ -1,0 +1,56 @@
+<div class="modal-header">
+    <h3 class="modal-title">Add a new team member</h3>
+</div>
+<div class="modal-body" ng-controller="teamController"> <!-- TODO: the controller injection doesn't happen by default ... ? -->
+	<div class="row">
+		<ul class="nav nav-pills nav-stacked col-md-2">
+		  <li class="active"><a data-toggle="pill" href="#profile">Profile</a></li>
+		  <li><a data-toggle="pill" href="#avatar">Avatar</a></li>
+		</ul>
+
+		<div class="tab-content col-md-10">
+		  <div id="profile" class="tab-pane fade in active">
+		    <h3>General tab</h3>
+
+		    <p>&nbsp;</p>
+
+		    <h4>Change name</h4>
+		    <form ng-submit="updName(user)">
+			  <div class="form-group">
+			    <label for="firstName">Change first name:</label>
+			    <input type="text" class="form-control" ng-model="user.firstName">
+			  </div>
+			  <div class="form-group">
+			    <label for="lastName">Change last name:</label>
+			    <input type="text" class="form-control"  ng-model="user.lastName">
+			  </div>
+			  <input type="submit" class="btn btn-default" value="Send">
+			</form>
+		    <form ng-submit="updDescription(user)">
+			    <div class="form-group">
+				  <label for="description">Description:</label>
+				  <textarea class="form-control" rows="5" ng-model="user.description"></textarea>
+				</div>
+				<button type="submit" class="btn btn-default">Submit</button>
+			</form>
+
+	       <!--  <ul>
+		        <li ng-repeat="item in items">
+		            <a href="#" ng-click="$event.preventDefault(); selected.item = item">{{ item }}</a>
+		        </li>
+		    </ul>
+		    <p>Selected: <b>{{ selected.item }}</b></p> -->
+		  </div> <!-- end tab-pane -->
+
+		  <div id="avatar" class="tab-pane fade">
+		    <h3>Avatar Tab</h3>
+		    
+		  </div> <!-- end tab-pane -->
+
+		</div>
+	</div> <!-- end-row -->
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="ok()">OK</button> <!-- ng-class="(user.firstName || user.lastName) ? 'btn-primary' : 'btn-default'"  -->
+    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+</div>
