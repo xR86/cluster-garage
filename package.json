@@ -6,7 +6,8 @@
     "start": "nodemon ./server/bin/www",
     "test": "mocha -R spec ./test/server/loginTest.js",
     "//": "istanbul cover node_modules/mocha/bin/_mocha -- -R spec",
-    "cov": "istanbul cover test/server/loginTest.js"
+    "cov": "istanbul cover test/server/loginTest.js",
+    "protractor": "protractor test/protractor/conf.js"
   },
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
