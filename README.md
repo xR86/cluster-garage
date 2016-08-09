@@ -9,6 +9,8 @@ Sprint board here: [https://zube.io/boards/61643778/sprintboard](https://zube.io
 
 Documentation can be found [here](https://github.com/xR86/cluster-garage/tree/master/_documentation) (ERD, architecture, json mocks).
 
+Screens can be found here: [Google Drive link](https://drive.google.com/open?id=0B27WyFpuLj6eeGRQZWlSRG5rcmM)
+
 Further documentation to be added.
 
 ##master branch
